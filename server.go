@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
-	"text/template"
 )
 
 var t *template.Template
@@ -13,15 +13,12 @@ var t4 *template.Template
 
 func accueil(w http.ResponseWriter, req *http.Request) {
 	fmt.Print("accueil")
-
-	// if req.Method == "GET" {
-	t.Execute(w, nil)
-
-	// 	if req.URL.Path != "/" {
-	// 		http.Error(w, "404 not found.", http.StatusNotFound)
-	// 	}
-	// }
-
+	if req.URL.Path == "/" {
+		t.Execute(w, nil)
+	} else if req.URL.Path != "/" {
+		http.Error(w, "404 not found", http.StatusNotFound)
+		return
+	}
 }
 
 func artistes(w http.ResponseWriter, req *http.Request) {
