@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="../static/images/favicon.png">
+        <link rel="stylesheet" href="../static/css/style.css">
+        <i src="../static/scripts/maps.js"></script> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta http-equiv="X-Frame-Options" content="deny"> -->
+        <link href="../static/css/map.css" rel="stylesheet">
+        <title>GROUPIE TRACKER</title>
+    </head>
+    <header>
+        {{template "header"}}
+    </header>
+    <body>
+        <h1>Locations - Map</h1>
+        <div id="map">Google Maps</div>
+    </body>
+    <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAenIyntci-S0QlSifbhifRRuTbtlD7_Kk&callback=LocationsMaps&libraries=&v=weekly"></iframe> 
+</html>
