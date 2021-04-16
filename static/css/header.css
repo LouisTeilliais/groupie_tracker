@@ -1,0 +1,43 @@
+#header{
+    position: absolute;
+    left: 0%;
+    right: 85%;
+    top: 0%;
+    bottom: 0%;
+    background: #15598B;
+}
+#logo{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 25px;
+    top: 32px;
+}
+#btAccueil{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 25px;
+    top: 250px;
+}
+#btArtistes{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 25px;
+    top: 290px;
+}
+#btMaps{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 25px;
+    top: 330px;
+}
+#btConcerts{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 25px;
+    top: 370px;
+}
