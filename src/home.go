@@ -7,8 +7,6 @@ import (
 )
 
 func Accueil(w http.ResponseWriter, req *http.Request){
-	// t := template.Must(template.ParseFiles())
-
 	t := template.Must(template.ParseFiles("./template/home.html", "./template/layout/header.html", "./template/layout/footer.html"))
 
 	fmt.Print("Accueil - ✅\n")
