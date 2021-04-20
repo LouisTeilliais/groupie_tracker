@@ -2,17 +2,24 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <link rel="icon" href="../static/images/favicon.png">
+        <link rel="icon" href="../static/images/attachment_82759076.png">
         <link rel="stylesheet" href="../static/css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/static/css/map.css" rel="stylesheet">
         <title>GROUPIE TRACKER</title>
     </head>
-    <header>
-        {{template "header"}}
-    </header>
     <body>
-        <h1>Locations - Map</h1>
+        <header>
+            {{template "header"}}
+        </header>
+        <div id="head">
+            <p>Locations</p>
+        </div>
+        <br>
+        <input id="search" type="text" placeholder="Search a city :">
+        <button id="loupe">🔎</button>
+        <div id="concerts"> Concerts</div>
+        <br>
         <div id="map">Google Maps</div>
         <script src="/static/scripts/maps.js" defer></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAenIyntci-S0QlSifbhifRRuTbtlD7_Kk&callback=initMap&libraries=&v=weekly"
