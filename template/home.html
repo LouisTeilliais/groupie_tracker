@@ -11,7 +11,19 @@
         {{template "header"}}
     </header>
     <body>
+
         <h1>PAGE ACCUEIL</h1>
+        {{ if .Artists}}
+
+        {{ range .Artists}}
+        <p>{{.ID}}</p>
+        <p>{{.Name}}</p>
+
+        {{end}}
+
+        {{else}}
+        <p>No heros</p>
+        {{end}}
 
         <script src="../static/scripts/data.js"></script>  
 
