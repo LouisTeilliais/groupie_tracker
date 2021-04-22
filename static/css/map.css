@@ -1,9 +1,10 @@
 #map {
-    position: absolute;
-    width: 667px;
-    height: 479px;
-    left: 30%;
-    top: 40%;
+    display: flex;
+    float: left;
+    width: 40%;
+    height: 400px;
+    margin-top: 2%;
+    margin-left: 15%;
     background: #C4C4C4;
 }
 p{
@@ -16,33 +17,32 @@ body {
     color: white;
 }
 #search {
-    position: absolute;
+    float: left;
     width: 306px;
     height: 53px;
-    left: 30%;
-    top: 33%;
+    margin-left: 15%;
 }
 #loupe {
-    position: absolute;
     float: left;
     height: 53px;
-    left: 47%;
-    top: 33.5%;
+    margin-left: 1%;
+    
 }
 #head {
-    height: 300px;
+    float: top;
+    height: 400px;
     width: 100%;
-    background-size:cover;
+    background-size: cover;
     background-image: url(/static/images/801x410_pnl_bercy_2_auto_x2.jpg);
     margin-top: -5%;
 }
 #concerts{
-    position: absolute;
-    width: 327px;
-    height: 479px;
-    left: 70%;
-    top: 40%;
+    float: right;
+    display: flex;
+    margin-right: 15%;
+    margin-top: 6%;
+    width: 20%;
+    height: 400px;
     background: #C4C4C4;
-
 }
 
