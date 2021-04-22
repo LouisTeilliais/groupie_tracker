@@ -1,0 +1,45 @@
+#title{
+    position: absolute;
+    width: 612px;
+    height: 100px;
+    left: 590px;
+    top: 10px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 64px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: black;
+}
+#Search{
+    position: absolute;
+    width: 175px;
+    height: 20px;
+    left: 17%;
+    top: 30%;    
+}
+#AdvenceSearch{
+    position: absolute;
+    width: 220px;
+    height: 350px;
+    top: 35%;
+    left: 17%;
+
+    border-style: solid;
+    border-color: black;
+    
+}
+#tabArtistes{
+    position: absolute;
+    width: 600px;
+    height: 385px;
+    top: 30%;
+    left: 40%;
+    border-style: solid;
+    border-color: black;
+}
