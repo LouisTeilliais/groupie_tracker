@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="icon" href="../static/images/favicon.png">
-        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/events.css">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GROUPIE TRACKER</title>
@@ -14,8 +14,21 @@
     <body>
         <h1>Evenements</h1>
 
-        <script src="../static/scripts/data.js"></script>  
+        <div id="Title">Listes des Evenements</div>
+        <form action="" method="GET">
+            <input type="text" id="search">
+            <button type="submit" id="btSearch">Search</button>
+        </form>
+        <div id="liste">
+            <button id="next" type="button" onclick="">></button>
+            <button id="back" type="button" onclick=""><</button>
+        </div>
+        <div id="fiche_event">
+            <img src="../static/images/ARNAUD.JPG" id="imgEvent">
+            <a id="nameEvent">Event name</a>
+        </div>
 
+        <script src="../static/scripts/data.js"></script>  
     </body>
 
 </html>

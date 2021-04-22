@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="../static/images/favicon.png">
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/artistes.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GROUPIE TRACKER</title>
     </head>
         {{template "header"}}
     <body>
-            <h1>PAGE ARTISTES</h1>
-        <script src="../static/scripts/data.js"></script>  
+        <a id="title">Liste des Artistes</a>
+        <input type="text" value="Search" onkeydown="" id="Search">
+        <div id="AdvenceSearch">
+            <input id="cbRap" type="checkbox" name="Rap" value="rap">
+            <label for="Rap">Rap</label>
 
+            <input id="cbRock" type="checkbox" name="Rock" value="rock">
+            <label for="Rock">Rock</label>
+
+            <input id="cbMetal" type="checkbox" name="Metal" value="metal">
+            <label for="Rock">Metal</label>
+
+            <input id="cbJazz" type="checkbox" name="Jazz" value="Jazz">
+            <label for="Jazz">Rock</label>
+
+            <input id="cbGroupe" type="checkbox" name="Groupe" value="groupe">
+            <label for="Groupe">Groupe</label>
+        </div>
+        <div id="tabArtistes"></div>
+
+
+        <script src="../static/scripts/data.js"></script>
     </body>
 </html>
