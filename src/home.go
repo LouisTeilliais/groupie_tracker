@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+
 func Accueil(w http.ResponseWriter, req *http.Request){
 
 
@@ -18,4 +19,10 @@ func Accueil(w http.ResponseWriter, req *http.Request){
         http.Error(w, "404 not found", http.StatusNotFound)
         return
     }
+	// templ , err := template.ParseFiles("./template/home.html")
+	// if err != nil {
+	// 	http.Error(w, "Internal Serveur Error", http.StatusInternalServerError)
+	// 	return
+	// }
+	// templ.Execute(w, )
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/artistes.css">
     <link rel="icon" href="../static/images/favicon.png">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,25 @@
 {{template "header"}}
 <body>
     <h1>PAGE ARTISTES</h1>
-    <h1>PAGE TEST</h1>
-    
+            <a id="title">Liste des Artistes</a>
+        <input type="text" value="Search" onkeydown="" id="Search">
+        <div id="AdvenceSearch">
+            <input id="cbRap" type="checkbox" name="Rap" value="rap">
+            <label for="Rap">Rap</label>
+
+            <input id="cbRock" type="checkbox" name="Rock" value="rock">
+            <label for="Rock">Rock</label>
+
+            <input id="cbMetal" type="checkbox" name="Metal" value="metal">
+            <label for="Rock">Metal</label>
+
+            <input id="cbJazz" type="checkbox" name="Jazz" value="Jazz">
+            <label for="Jazz">Rock</label>
+
+            <input id="cbGroupe" type="checkbox" name="Groupe" value="groupe">
+            <label for="Groupe">Groupe</label>
+        </div>
+        <div id="tabArtistes">
     {{ if .Groups}}
     {{ range .Groups}}
     <p>
@@ -24,6 +42,9 @@
     {{else}}
     <p>No groups found</p>
     {{end}}
+  </div>
+    
+  
     
     <script src="../static/scripts/artistes.js"></script> 
 </body>

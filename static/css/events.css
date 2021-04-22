@@ -1,0 +1,79 @@
+#Title{
+    position: absolute;
+    width: 612px;
+    height: 100px;
+    left: 590px;
+    top: 10px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 64px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #000000;
+}
+#liste{
+    position: absolute;
+    width: 367px;
+    height: 460px;
+    left: 300px;
+    top: 175px;
+    border-style: solid;
+    border-color: black;
+}
+#next{
+    position: absolute;
+    width: 40px;
+    height: 35px;
+    left: 86%;
+    top: 90%;    
+}
+#back{
+    position: absolute;
+    width: 40px;
+    height: 35px;
+    left: 3%;
+    top: 90%;    
+}
+#fiche_event{
+    position: absolute;
+    width: 500px;
+    height: 520px;
+    left: 750px;
+    top: 115px;
+    border-style: solid;
+    border-color: black;
+}
+#search{
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    left: 300px;
+    top: 140px;
+    
+}
+#btSearch{
+    position: absolute;
+    width: 75px;
+    height: 26px;
+    left: 525px;
+    top: 140px;
+}
+#imgEvent{
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    left: 5%;
+    top: 5%;
+}
+#nameEvent {
+    position:absolute;
+    width: 150px;
+    height: 30px;
+    left:35%;
+    top: 5%;
+}
