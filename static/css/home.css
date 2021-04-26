@@ -1,0 +1,27 @@
+#title{
+    position: relative;
+
+    width: 350px;
+    height: 75px;
+
+    top: 5%;
+    left: 20%;
+
+    font-size: 300%;
+}
+#txtBienvenue{
+    position: relative;
+    
+    top: 20%;
+    left: 55%;
+
+    font-size: 225%;
+}
+#txtExplication{
+    position: relative;
+
+    top: 50%;
+    left: 20%;
+
+    font-size: 175%;
+}
