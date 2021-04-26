@@ -1,7 +1,6 @@
-package handlers
+package main
 
 import (
-	"text/template"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -18,24 +17,8 @@ type group struct {
 	FirstAlbum string `json:"firstAlbum"`
 }
 
-type PageDataGroups struct {
-	Groups []group
-}
+func main(){
 
-func Artistes(w http.ResponseWriter, req *http.Request){
-	groups := GetGroups()
-	pageGroups := PageDataGroups{Groups: groups}
-	fmt.Printf("test groupe : %v\n", pageGroups.Groups[0])
-
-	t := template.Must(template.ParseFiles("./template/artistes.html", "./template/layout/header.html"))
-	// fmt.Print("Artistes - ✅\n")
-	// w.Header().Add("Content-Type", "application/json")
-    t.Execute(w, pageGroups)
-}
-
-
-
-func GetGroups()[]group {
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 
 	spaceClient := http.Client{
@@ -64,12 +47,19 @@ func GetGroups()[]group {
 	}
 
 	allGroups := []group{}
+	var groupsList []group = []group{}
 	jsonErr := json.Unmarshal(body, &allGroups)
-	// json.marshal à écrire dans le responsewriter
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
-	fmt.Print(allGroups)
 
-	return allGroups
+	for i:=0; i<50; i++{
+		groupsList = append(groupsList, allGroups[i])
+		fmt.Printf("ID : %v - ", allGroups[i].ID)
+		fmt.Printf("Nom : %v - ", allGroups[i].Name)
+		fmt.Printf("Création : %v - ", allGroups[i].CreationDate)
+		fmt.Printf("Premier Membre : %v\n", allGroups[i].Members[0])
+	}
+
+	fmt.Printf("test groupe : %v\n", groupsList[0])
 }

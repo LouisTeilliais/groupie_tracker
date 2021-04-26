@@ -1,5 +1,6 @@
 #header{
     position: absolute;
+    float: left;
     left: 0%;
     right: 85%;
     top: 0%;
@@ -7,37 +8,37 @@
     background: #15598B;
 }
 #logo{
-    position: absolute;
-    width: 150px;
+    float: left;
+    width: 52%;
     height: 150px;
-    left: 25px;
-    top: 32px;
+    margin-left: 20%;
+    margin-top: 5%;
 }
 #btAccueil{
-    position: absolute;
-    width: 150px;
+    float: left;
+    width: 52%;
     height: 30px;
-    left: 25px;
-    top: 250px;
+    margin-left: 20%;
+    margin-top: 20%;
 }
 #btArtistes{
-    position: absolute;
-    width: 150px;
+    float: left;
+    width: 52%;
     height: 30px;
-    left: 25px;
-    top: 290px;
+    margin-left: 20%;
+    margin-top: 4%;
 }
 #btMaps{
-    position: absolute;
-    width: 150px;
+    float: left;
+    width: 52%;
     height: 30px;
-    left: 25px;
-    top: 330px;
+    margin-left: 20%;
+    margin-top: 4%;
 }
 #btConcerts{
-    position: absolute;
-    width: 150px;
+    float: left;
+    width: 52%;
     height: 30px;
-    left: 25px;
-    top: 370px;
+    margin-left: 20%;
+    margin-top: 4%;
 }
