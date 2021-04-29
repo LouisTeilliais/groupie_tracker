@@ -16,17 +16,14 @@ body {
     background-color: black;
     color: white;
 }
-#search {
+#city {
     float: left;
-    width: 306px;
-    height: 53px;
-    margin-left: 15%;
-}
-#loupe {
-    float: left;
-    height: 53px;
-    margin-left: 1%;
-    
+    margin-left: 25%;
+    border-radius: 20%;
+    height: 50px;
+    width: 10%;
+    background : #15598B;
+    color: white;
 }
 #head {
     float: top;

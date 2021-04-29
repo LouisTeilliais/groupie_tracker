@@ -28,7 +28,7 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 	fmt.Printf("test groupe : %v\n", pageGroups.Groups[0])
 
 	t := template.Must(template.ParseFiles("./template/artistes.html", "./template/layout/header.html"))
-	// fmt.Print("Artistes - ✅\n")
+	fmt.Print("Artistes - ✅\n")
 	// w.Header().Add("Content-Type", "application/json")
     t.Execute(w, pageGroups)
 }
@@ -69,7 +69,7 @@ func GetGroups()[]group {
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
-	fmt.Print(allGroups)
+	// fmt.Print(allGroups)
 
 	return allGroups
 }
