@@ -1,35 +1,38 @@
 // let geocoder;
-let map;
+// let map;
+
+// let lat;
+// let lng;
 
 function coordonnees(pos){
+
     let crd = pos.coords
 
-    let lat = crd.latitude;
-    let lng = crd.longitude;
+    lat = crd.latitude;
+    lng = crd.longitude;
     
     console.log("Latitude : " + lat)
     console.log("Longitude : " + lng)
-    
-    let gps = {lat, lng}
-    
+   
     let map = new google.maps.Map(document.getElementById("map"), {
         zoom : 10,
-        center : gps,
-        mapTypeID: "terrain",
+        center : gps = {lat, lng},
     });
-
+    // console.log(map)
+    
     new google.maps.Marker({
         position: gps,
         map: map,
     });
+    // console.log(google.maps.Marker)
+
 }
 navigator.geolocation.getCurrentPosition(coordonnees)
 
 
 
 function initMap(){
-    
-    
+        
     // const geocoder = new google.maps.Geocoder();
     // document.getElementById("submit").addEventListener("click", () => {
     //   codeAddress(geocoder, map);
