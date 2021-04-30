@@ -9,11 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROUPIE TRACKER</title>
 </head>
+
+<header>
 {{template "header"}}
+
+</header>
+
+
 <body>
             <a id="title">Liste des Artistes</a>
         <input type="text" value="Search" onkeydown="" id="Search">
-        <div id="AdvenceSearch">
+        <!-- <div id="AdvenceSearch">
             <input id="cbRap" type="checkbox" name="Rap" value="rap">
             <label for="Rap">Rap</label>
 
@@ -28,15 +34,17 @@
 
             <input id="cbGroupe" type="checkbox" name="Groupe" value="groupe">
             <label for="Groupe">Groupe</label>
-        </div>
+        </div> -->
         <div id="tabArtistes">
     {{ if .Groups}}
     {{ range .Groups}}
+    <div class="nomGrp"> {{.Name }}</div>
     <p>
+        {{ .ID }}
+        {{ .CreationDate }}
         <span class="groupName">{{.Name}}</span>
          - <span class="groupMembers">{{ .Members }}</span>
          - First Album : <span class="groupDate">{{.FirstAlbum}}</span></p>
-        
         {{end}}
     {{else}}
     <p>No groups found</p>

@@ -4,32 +4,52 @@
         <meta charset="UTF-8">
         <link rel="icon" href="../static/images/favicon.png">
         <link rel="stylesheet" href="../static/css/events.css">
+        <link rel="stylesheet" href="../static/css/header.css">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GROUPIE TRACKER</title>
     </head>
-    <header>
-        {{template "header"}}
-    </header>
-    <body>
-        <h1>Evenements</h1>
-
-
-        <div id="Title">Listes des Evenements</div>
-        <form action="" method="GET">
-            <input type="text" id="search">
-            <button type="submit" id="btSearch">Search</button>
+    <body> 
+        <navbar>
+            {{template "header"}}
+        </navbar>     
+        <form id="form">
+            <input type="text" id="search"  placeholder="Nom du groupe...">
+            <button type="submit"  id="btSearch">Search</button>
         </form>
-        <div id="liste">
-            <button id="next" type="button" onclick="">></button>
-            <button id="back" type="button" onclick=""><</button>
-        </div>
-        <div id="fiche_event">
-            <img src="../static/images/ARNAUD.JPG" id="imgEvent">
-            <a id="nameEvent">Event name</a>
-        </div>
+        <div>
 
-        <script src="../static/scripts/data.js"></script>  
+            <h1>Liste des Evenements</h1>
+        <form method="POST">
+
+            <div class="liste"> 
+                {{ if .Groups }}
+            {{ range .Groups }}
+            <button name="groups" value={{.ID}} class="groups" >{{.Name}}</button>
+                {{end}}
+            {{end}}
+                
+            </div>
+        </form>
+            {{ if .Relations }}
+            <div class="group_event">
+                <p>{{.ThisGroup.Name}}</p>
+            {{ range .Relations}}
+                <p>{{.City}}</p>
+                {{range $date:=.Dates}}
+                <p>{{ $date }}</p>
+                {{end}}
+                {{end}}
+            </div>
+            {{end}}
+
+        </div>
     </body>
 
+    <script src="../static/scripts/events.js"></script>  
 </html>
+
+                <!-- <img src="../static/images/ARNAUD.JPG" id="imgEvent"> -->
+
+<!-- <button id="next" type="button" onclick="">></button>
+                <button id="back" type="button" onclick=""><</button> -->
