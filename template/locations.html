@@ -9,23 +9,32 @@
         <title>GROUPIE TRACKER</title>
     </head>
     <body>
-
         <header>
             {{template "header"}}
         </header>
+        
         <div id="head">
             <p>Locations</p>
         </div>
         <br>
-        <input id="search" type="text" placeholder="Search a city :">
-        <button id="loupe">🔎</button>
-        <div id="concerts"> Concerts</div>
+        
+        <!-- <div id="floating-panel">
+            <input id="address" type="textbox" value="" />
+            <input id="submit" type="button" value="Geocode" />
+        </div> -->
         <br>
+        <form>
+            <select id="city" name="City">
+                <option value="" selected >Select your city</option>
+                <option value="north_carolina-usa">North Carolina - USA</option>
+                <option value="vancouver-canada">Vancouver - Canada</option>
+                <option value="paris-france">Paris - France</option>
+            </select>
+        </form>
         <div id="map">Google Maps</div>
         <script src="/static/scripts/maps.js" defer></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAenIyntci-S0QlSifbhifRRuTbtlD7_Kk&callback=initMap&libraries=&v=weekly"
         defer
         ></script> 
     </body>
-    
-</html>
+</html>     

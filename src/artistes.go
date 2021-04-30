@@ -20,5 +20,3 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 	// w.Header().Add("Content-Type", "application/json")
     t.Execute(w, pageGroups)
 }
-
-
