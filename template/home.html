@@ -3,29 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <link rel="icon" href="../static/images/favicon.png">
-        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/home.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GROUPIE TRACKER</title>
     </head>
-    <header>
-        {{template "header"}}
+    <header>        {{template "header"}}
     </header>
     <body>
+        <h1 id="title">Groupie Tracker</h1>
 
-        <h1>PAGE ACCUEIL</h1>
-        {{ if .Artists}}
 
-        {{ range .Artists}}
-        <p>{{.ID}}</p>
-        <p>{{.Name}}</p>
+        <p id="txtBienvenue">
+            Bienvenue sur Groupie Tracker,
+            <br>    
+            un site fait pour les passioner de music 
+            <br>
+            en tout genre.
+        </p>
 
-        {{end}}
+        <p id="txtExplication">
+            Sur Groupie Tracker vous pouvez retrouver toute
+            <br>
+            les information dont vous avez besoin.
+            <br>
+            Information sur des artistes/groupes, lieux et date de concert
+            <br>
+            et evenement dans toute la france et plus.
+        </p>
 
-        {{else}}
-        <p>No heros</p>
-        {{end}}
 
         <script src="../static/scripts/data.js"></script>  
-
     </body>
 </html>
