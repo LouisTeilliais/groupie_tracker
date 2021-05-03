@@ -26,7 +26,7 @@ func Events(w http.ResponseWriter, req *http.Request){
 		relations := data.GetEvents(idGroup)
 		dates := data.GetDates(idGroup)
 		group := data.GetOneGroup(idGroup)
-		fmt.Printf("dates %v", dates)
+		// fmt.Printf("dates %v", dates)
 		pageDates := PageDataDates{Dates: dates, Groups: groups, ThisGroup: group, Relations:relations}
 		t.Execute(w, pageDates)
 		//w.Headers().Add("Content-Type", "application/json") ajouter des headers
