@@ -12,6 +12,19 @@
     <body>
         <h1 id="title">Groupie Tracker</h1>
 
+        <h1>PAGE ACCUEIL</h1>
+        {{ if .Artists}}
+
+        {{ range .Artists}}
+        <p>{{.ID}}</p>
+        <p>{{.Name}}</p>
+
+        {{end}}
+
+        {{else}}
+        <p>No heros</p>
+        {{end}}
+
         <p id="txtBienvenue">
             Bienvenue sur Groupie Tracker,
             <br>    

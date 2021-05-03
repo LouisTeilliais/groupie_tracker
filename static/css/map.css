@@ -1,0 +1,48 @@
+#map {
+    display: flex;
+    float: left;
+    width: 40%;
+    height: 400px;
+    margin-top: 2%;
+    margin-left: 15%;
+    background: #C4C4C4;
+}
+p{
+    text-align: center;
+    font-size: 80px;
+    color: white;
+}
+body {
+    background-color: black;
+    color: white;
+}
+#search {
+    float: left;
+    width: 306px;
+    height: 53px;
+    margin-left: 15%;
+}
+#loupe {
+    float: left;
+    height: 53px;
+    margin-left: 1%;
+    
+}
+#head {
+    float: top;
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+    background-image: url(/static/images/801x410_pnl_bercy_2_auto_x2.jpg);
+    margin-top: -5%;
+}
+#concerts{
+    float: right;
+    display: flex;
+    margin-right: 15%;
+    margin-top: 6%;
+    width: 20%;
+    height: 400px;
+    background: #C4C4C4;
+}
+

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="icon" href="../static/images/favicon.png">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../static/css/artistes.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GROUPIE TRACKER</title>
-    </head>
-        {{template "header"}}
-    <body>
-        <a id="title">Liste des Artistes</a>
+
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="../static/css/artistes.css">
+    <link rel="icon" href="../static/images/favicon.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUPIE TRACKER</title>
+</head>
+{{template "header"}}
+<body>
+            <a id="title">Liste des Artistes</a>
         <input type="text" value="Search" onkeydown="" id="Search">
         <div id="AdvenceSearch">
             <input id="cbRap" type="checkbox" name="Rap" value="rap">
@@ -27,9 +29,22 @@
             <input id="cbGroupe" type="checkbox" name="Groupe" value="groupe">
             <label for="Groupe">Groupe</label>
         </div>
-        <div id="tabArtistes"></div>
-
-
-        <script src="../static/scripts/data.js"></script>
-    </body>
+        <div id="tabArtistes">
+    {{ if .Groups}}
+    {{ range .Groups}}
+    <p>
+        <span class="groupName">{{.Name}}</span>
+         - <span class="groupMembers">{{ .Members }}</span>
+         - First Album : <span class="groupDate">{{.FirstAlbum}}</span></p>
+        
+        {{end}}
+    {{else}}
+    <p>No groups found</p>
+    {{end}}
+  </div>
+    
+  
+    
+    <script src="../static/scripts/artistes.js"></script> 
+</body>
 </html>
