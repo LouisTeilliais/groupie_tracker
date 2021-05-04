@@ -1,7 +1,6 @@
+
 body {
     margin-left:15%;
-    border:black solid 1px;
-    background-color: aliceblue;
 }
 h1{
     font-family: Roboto;
@@ -16,72 +15,32 @@ h1{
 }
 .liste {
     overflow: scroll;
-    float:left;
-    width:20%;
+    width:40%;
     height:500px;
     border-style: solid;
     border-color: black;
 }
 
-.groups {
+.pageEvents {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+
+.oneGroup{
     width:100%;
 }
 
 .group_event {
-    float:right;
-    margin-right:5%;
-    width:35%;
-    height:50%;
+    width:100%;
+    height:100%;
     border-style: solid;
     border-color: black;
-} 
-
-/* 
-#liste{
-    position: absolute;
-    width: 367px;
-    height: 460px;
-    left: 300px;
-    top: 175px;
-    border-style: solid;
-    border-color: black;
+    text-align:center;
 }
 
-#fiche_event{
-    position: absolute;
-    width: 500px;
-    height: 520px;
-    left: 750px;
-    top: 115px;
-    border-style: solid;
-    border-color: black;
-}
-#search{
-    position: absolute;
-    width: 200px;
-    height: 20px;
-    left: 300px;
-    top: 140px;
-    
-}
-#btSearch{
-    position: absolute;
-    width: 75px;
-    height: 26px;
-    left: 525px;
-    top: 140px;
-}
-#imgEvent{
-    position: absolute;
-    width: 25%;
-    height: 25%;
-    left: 5%;
-    top: 5%;
-}
-#nameEvent {
-    position:absolute;
-    width: 150px;
-    height: 30px;
-    left:35%;
-    top: 5%;
+.concert {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
 }

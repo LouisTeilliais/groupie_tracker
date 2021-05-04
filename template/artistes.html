@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/artistes.css">
     <link rel="icon" href="../static/images/favicon.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROUPIE TRACKER</title>
@@ -79,6 +81,7 @@
                 <p>{{ .CreationDate}}</p>
                 <h3>Date du premier album</h3>
                 <p>{{ .FirstAlbum}}</p>
+                <a href="/events?oneGroup={{.ID}}"><button>Voir les concerts.</button></a>
             </div>
             {{end}}
             {{else}}

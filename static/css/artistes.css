@@ -27,9 +27,9 @@ h1 {
 }
 
 .oneGroup {
-    background-color: crimson;
-    text-align: center;
+    width:auto;
 }
+
 
 datalist {
     display:flex;
