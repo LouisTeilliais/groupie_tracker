@@ -16,8 +16,8 @@ func main() {
 	http.HandleFunc("/artistes", handlers.Artistes)
 	http.HandleFunc("/locations", handlers.Locations)
 	http.HandleFunc("/events", handlers.Events)
-	fmt.Print("Serveur opérationnel ! 🎉\n")
-
+	http.HandleFunc("/cities", handlers.ConcertsLocations)
+	
 	http.ListenAndServe(":8000", nil)
 	
 }
