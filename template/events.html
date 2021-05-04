@@ -13,9 +13,22 @@
         <navbar>
             {{template "header"}}
         </navbar>     
-        <form id="form">
-            <input type="text" id="search"  placeholder="Nom du groupe...">
-            <button type="submit"  id="btSearch">Search</button>
+        <form method="POST">
+        
+            <div>
+                <input list="allData" type="search" id="search_bar">
+                <datalist id="allData">
+                    {{range .Groups}}
+                    <option value="{{.Name}}">| Groupe</option>
+                    {{end}}
+                    {{range .Groups}}
+                    {{range .Members}}
+                    <option value="{{.}}">| Member</option>
+                    {{end}}
+                    {{end}}
+                </datalist>
+            </div>
+            <button type="submit">Rechercher</button>
         </form>
         <div>
 
