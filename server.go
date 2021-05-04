@@ -14,6 +14,7 @@ func main() {
 	http.HandleFunc("/artistes", handlers.Artistes)
 	http.HandleFunc("/locations", handlers.Locations)
 	http.HandleFunc("/events", handlers.Events)
+	http.HandleFunc("/cities", handlers.ConcertsLocations)
 	
 	http.ListenAndServe(":8000", nil)
 	

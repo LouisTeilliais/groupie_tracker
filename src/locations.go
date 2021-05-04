@@ -3,47 +3,47 @@ package handlers
 import (
 	"fmt"
 	"text/template"
+	"encoding/json"
 	"net/http"
-	"strconv"
 	data "./data"
 )
 
 func Locations(w http.ResponseWriter, req *http.Request){
 	
-	
+	groups := data.GetGroups()
 	t := template.Must(template.ParseFiles("./template/locations.html", "./template/layout/header.html", "./template/layout/footer.html"))
 	
-	var AllCities []string
-	var cities []string
-
-	for indexGroup := 1; indexGroup < 52; indexGroup++ {
-		
-		cities = data.GetCity(strconv.Itoa(indexGroup))
-
-		for _, value := range cities{
-			
-			for j := 0; j < len(cities); j++ {
-				
-				if value != cities[j]{
-					AllCities = append(AllCities, value)
-				}
-			}	
-			fmt.Print(AllCities)		
-		}	
-	}
-
 	if req.Method == "POST" {
+		fmt.Print("req OK", "\n")
+		// indexGroup := req.FormValue("groups")
+		fmt.Print("coucou")
+		// cities := data.GetCity(indexGroup)
+		// fmt.Print(cities)
+	}
 		// idCity := req.FormValue("city")
 		
 		type DataCity struct {
-			Cities []string
+			// Cities []string
+			// ThisGroup data.OneGroup
+			Groups []data.Group
 		}
 		
-		pageLocations := DataCity{Cities : cities}
+		pageLocations := DataCity{Groups: groups}
 		t.Execute(w, pageLocations)
-	}else {
 		
 		fmt.Print("Locations - ✅\n")
-		t.Execute(w, nil)
-	}
+		
+	
+}
+
+func ConcertsLocations(w http.ResponseWriter, req *http.Request){
+
+	// groups := data.GetGroups()
+	indexGroup := req.FormValue("groups")
+	cities := data.GetCity(indexGroup)
+
+	jsonData, _ := json.Marshal(cities)
+
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(jsonData)
 }
