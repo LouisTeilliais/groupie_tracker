@@ -33,6 +33,7 @@
         </form>
             {{ if .Relations }}
             <div class="group_event">
+                <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
                 <p>{{.ThisGroup.Name}}</p>
             {{ range .Relations}}
                 <p>{{.City}}</p>
