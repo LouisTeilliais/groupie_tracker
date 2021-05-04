@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"strings"
 )
 type Infos struct {
 	ID int `json:"id"`;
@@ -14,6 +15,7 @@ type Infos struct {
 }
 type Relations struct {
 	City string;
+	Country string;
 	Dates []string;
 }
 	
@@ -58,12 +60,17 @@ func GetEvents(thisID string)[]Relations{
 	// création d'un tableau de structures avec les villes et les dates.
 	//on y met la clé et la valeur.
 	for k, v := range mapInfos{
+		tabLocation := strings.Split(k, "-")
+		city := strings.Title(strings.Replace(tabLocation[0], "_", " ", -1))
+		country := strings.Title(strings.Replace(tabLocation[1], "_", " ", -1))
+
+
 		var tabValues []string
 		 for _, v2 := range v.([]interface{}){
 			tabValues = append(tabValues, v2.(string))
 		 }
 		// tableau de Relations dans lequel je push ça)
-		var oneRelation = Relations{k, tabValues}
+		var oneRelation = Relations{city, country, tabValues}
 		tabRelations = append(tabRelations, oneRelation)
 	}
 // strings.replace("telle chaine", " espace ")

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-  <link rel="stylesheet" href="../static/css/artistes.css">
+  <link rel="stylesheet" href="../static/css/artistesOK.css">
     <link rel="icon" href="../static/images/favicon.png">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,45 +14,91 @@
 {{template "header"}}
 
 </header>
-
-
 <body>
-            <a id="title">Liste des Artistes</a>
-        <input type="text" value="Search" onkeydown="" id="Search">
-        <!-- <div id="AdvenceSearch">
-            <input id="cbRap" type="checkbox" name="Rap" value="rap">
-            <label for="Rap">Rap</label>
+    <h1>Liste des artistes</h1>
+    <div class="pageArtistes">
+        <div class="options">
+            Les options seront ici.
+            <form method="POST">
 
-            <input id="cbRock" type="checkbox" name="Rock" value="rock">
-            <label for="Rock">Rock</label>
+            <div>
+                <input list="allData" type="search" id="search_bar">
+                <datalist id="allData">
+                    {{range .Groups}}
+                  <option value="{{.Name}}" ></option>
+                      {{end}}
+                </datalist>
+            </div>
+            <button type="submit">Rechercher</button>
+            </form>
+            <form method="POST">
+                <div>
+                    <div class="filter">
+                        <label class="filter-title" for="startCD">Filter by creation date</label>
+                        <div>
+                            <input id="startCD" type="range" min="1958" max="2015" step="1" name="startCD" value={{.RangeCreationDate.Start}}>
+                            <input id="endCD" type="range" min="1958" max="2015" step="1" name="endCD" value="{{.RangeCreationDate.End}}">
+                        </div>
+                        <p>
+                            De <span id="fromCD"></span> à <span id="toCD"></span>
+                        </p>
+                    </div>
 
-            <input id="cbMetal" type="checkbox" name="Metal" value="metal">
-            <label for="Rock">Metal</label>
-
-            <input id="cbJazz" type="checkbox" name="Jazz" value="Jazz">
-            <label for="Jazz">Rock</label>
-
-            <input id="cbGroupe" type="checkbox" name="Groupe" value="groupe">
-            <label for="Groupe">Groupe</label>
-        </div> -->
-        <div id="tabArtistes">
-    {{ if .Groups}}
-    {{ range .Groups}}
-    <div class="nomGrp"> {{.Name }}</div>
-    <p>
-        {{ .ID }}
-        {{ .CreationDate }}
-        <span class="groupName">{{.Name}}</span>
-         - <span class="groupMembers">{{ .Members }}</span>
-         - First Album : <span class="groupDate">{{.FirstAlbum}}</span></p>
-        {{end}}
-    {{else}}
-    <p>No groups found</p>
-    {{end}}
-  </div>
+                    <div class="filter">
+                        <label for="startCD">Filtre par date de sortie du premier album </label>
+                        <div>
+                            <input id="startFA" type="range" min="1963" max="2018" step="1" name="startFA" value={{.RangeFirstAlbum.Start}}>
+                            <input id="endFA" type="range" min="1963" max="2018" step="1" name="endFA" value="{{.RangeFirstAlbum.End}}">
+                            <p>
+                                De <span id="fromFA"></span> à <span id="toFA"></span>
+                            </p>
+                        </div>
+                        
+                    </div>
+                    
+                    <label>Nombre de membres :</label>
+                    {{range .CheckboxMember}}
+                    <input {{.Checked}} name="checkbox-{{.Number}}" type="checkbox" value="{{.Number}}">
+                    <label for="{{.Number}}">{{.Number}}</label>
+                    {{end}}
+                </div>
+                <button type="submit">Filtres</button>
+            </form>
+        </div>
+        
+        <form method="GET">
+            <div class="pagination">
+                {{ range .NumberPages}}
+                <button type="submit" name="page" value="{{.}}">{{.}}</button>
+                {{end}}
+            </div>
+        </form>
+        
+        <div class="groups">
+            {{if .Groups}}
+            {{range .Groups}}
+            <div class="oneGroup">
+                <img src="{{ .Image}}" alt="Image du groupe {{ .Name}}">
+                <h2> {{ .Name}}</h2>
+                <h3>Membres</h3>
+                
+                <p> |
+                    {{range $member := .Members}}
+                    <span> {{$member}} |</span>
+                    {{end}}
+                </p>
+                <h3>Date de création</h3>
+                <p>{{ .CreationDate}}</p>
+                <h3>Date du premier album</h3>
+                <p>{{ .FirstAlbum}}</p>
+            </div>
+            {{end}}
+            {{end}}
     
-  
     
+    
+        </div>
+    </div>
     <script src="../static/scripts/artistes.js"></script> 
 </body>
 </html>

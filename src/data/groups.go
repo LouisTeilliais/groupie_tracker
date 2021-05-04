@@ -6,10 +6,12 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"sort"
 )
 
 type Group struct {
 	ID int `json:"id"`
+	Image string `json:"image"`
 	Name string `json:"name"`
 	Members []string `json:"members"`
 	CreationDate int `json:"creationDate"`
@@ -22,7 +24,7 @@ func GetGroups()[]Group {
 	fmt.Print("Lancement Data GROUPS OK - ✅\n")
 
 	spaceClient := http.Client{
-		Timeout: time.Second * 2, // Timeout after 2 seconds
+		Timeout: time.Second * 10, // Timeout after 2 seconds
 	}
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
@@ -53,6 +55,8 @@ func GetGroups()[]Group {
 		log.Fatal(jsonErr)
 	}
 	// fmt.Print(allGroups)
-
+	sort.SliceStable(allGroups, func(i, j int) bool {
+		return len(allGroups[i].Members) < len(allGroups[j].Members)
+	})
 	return allGroups
 }

@@ -1,12 +1,9 @@
-
-
 body {
     margin-left:15%;
     border:black solid 1px;
     background-color: aliceblue;
 }
 h1{
-
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -14,26 +11,20 @@ h1{
     margin:auto;
     margin-left:25%;
     margin-right:25%;
-    text-align:center;
-
-    
+    text-align:center;    
     color: #000000;
 }
-
-.hidden{
-    display:none;
-}
-/* .content {
-    margin-left:15%;
-    margin-top:5%;
-} */
 .liste {
     overflow: scroll;
     float:left;
-    width:40%;
+    width:20%;
     height:500px;
     border-style: solid;
     border-color: black;
+}
+
+.groups {
+    width:100%;
 }
 
 .group_event {
