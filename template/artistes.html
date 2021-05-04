@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-  <link rel="stylesheet" href="../static/css/artistesOK.css">
+    <link rel="stylesheet" href="../static/css/artistes.css">
     <link rel="icon" href="../static/images/favicon.png">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,27 +11,15 @@
 </head>
 
 <header>
-{{template "header"}}
-
+    {{template "header"}}
+    
 </header>
 <body>
     <h1>Liste des artistes</h1>
     <div class="pageArtistes">
         <div class="options">
-            Les options seront ici.
-            <form method="POST">
-
-            <div>
-                <input list="allData" type="search" id="search_bar">
-                <datalist id="allData">
-                    {{range .Groups}}
-                  <option value="{{.Name}}" ></option>
-                      {{end}}
-                </datalist>
-            </div>
-            <button type="submit">Rechercher</button>
-            </form>
-            <form method="POST">
+            
+            <form action="/artistes?page=1" id="formFilter" method="POST">
                 <div>
                     <div class="filter">
                         <label class="filter-title" for="startCD">Filter by creation date</label>
@@ -43,7 +31,7 @@
                             De <span id="fromCD"></span> à <span id="toCD"></span>
                         </p>
                     </div>
-
+                    
                     <div class="filter">
                         <label for="startCD">Filtre par date de sortie du premier album </label>
                         <div>
@@ -58,7 +46,7 @@
                     
                     <label>Nombre de membres :</label>
                     {{range .CheckboxMember}}
-                    <input {{.Checked}} name="checkbox-{{.Number}}" type="checkbox" value="{{.Number}}">
+                    <input {{.Checked}} name="checkbox-{{.Number}}" class="checkbox" type="checkbox" value="{{.Number}}">
                     <label for="{{.Number}}">{{.Number}}</label>
                     {{end}}
                 </div>
@@ -66,13 +54,13 @@
             </form>
         </div>
         
-        <form method="GET">
-            <div class="pagination">
-                {{ range .NumberPages}}
-                <button type="submit" name="page" value="{{.}}">{{.}}</button>
-                {{end}}
-            </div>
-        </form>
+        
+        <div class="pagination">
+            {{ range .NumberPages}}
+            <button onclick="goToPage('{{.}}')" name="page" value="{{.}}">{{.}}</button>
+            {{end}}
+        </div>
+        
         
         <div class="groups">
             {{if .Groups}}
@@ -93,10 +81,12 @@
                 <p>{{ .FirstAlbum}}</p>
             </div>
             {{end}}
+            {{else}}
+            <p>Pas d'artistes trouvés avec les filtres.</p>
             {{end}}
-    
-    
-    
+            
+            
+            
         </div>
     </div>
     <script src="../static/scripts/artistes.js"></script> 

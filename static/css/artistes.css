@@ -1,49 +1,36 @@
+body {
+    margin-left:15%;
+}
 
+h1 {
+    text-align:center;
+}
 
-#title{
-    position: absolute;
-    width: 612px;
-    height: 100px;
-    left: 590px;
-    top: 10px;
-    
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 45px;
-    line-height: 64px;
-    display: flex;
-    align-items: center;
+.options {
+    width:25%;
+    height:100%;
+    background-color:blanchedalmond;
+}
+
+.pageArtistes {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+
+.groups{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width:70%;
+    height:auto;
+}
+
+.oneGroup {
+    background-color: crimson;
     text-align: center;
-
-    color: black;
 }
-#Search{
-    position: absolute;
-    width: 175px;
-    height: 20px;
-    left: 17%;
-    top: 30%;    
-}
-#AdvenceSearch{
-    position: absolute;
-    width: 220px;
-    height: 350px;
-    top: 35%;
-    left: 17%;
 
-    border-style: solid;
-    border-color: black;
-    
-}
-#tabArtistes{
-    overflow: scroll;
-
-    position: absolute;
-    width: 600px;
-    height: 385px;
-    top: 30%;
-    left: 40%;
-    border-style: solid;
-    border-color: black;
+datalist {
+    display:flex;
 }

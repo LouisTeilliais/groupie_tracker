@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"time"
-	"sort"
 )
 
 type Group struct {
@@ -55,8 +54,6 @@ func GetGroups()[]Group {
 		log.Fatal(jsonErr)
 	}
 	// fmt.Print(allGroups)
-	sort.SliceStable(allGroups, func(i, j int) bool {
-		return len(allGroups[i].Members) < len(allGroups[j].Members)
-	})
+	
 	return allGroups
 }
