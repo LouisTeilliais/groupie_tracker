@@ -21,38 +21,40 @@ function initMap(){
         
         const geocoder = new google.maps.Geocoder();
         codeAddress(geocoder, map, marker);
+        
     })
     
 }
+
 function codeAddress(geocoder, resultsMap, marker) {
     
     const address = document.querySelector('select')
     
-    address.addEventListener("change", function(event){
+    address.addEventListener("change", async function(event){ 
         
-       
         let addressValue = event.target.value
-        console.log(addressValue)
+        // console.log(addressValue)
         
-        // let position = address.geometry.location
-        // console.log(position)
+        let res = await fetch(`/cities?groups=${addressValue}`)
+        let cities = await res.json()
+        console.log(cities)
         
-        // const address = document.getElementById("address").value;
-        console.log(geocoder)
-        geocoder.geocode({ address: addressValue }, (results, status) => {
+        for (let i = 0; i < cities.length; i ++) {
+            console.log(cities.length)
             
-            if (status === "OK") {
-                resultsMap.setCenter(results[0].geometry.location);
+            geocoder.geocode({ address: cities[i]}, (results, status) => {
                 
-                const image = "https://img.icons8.com/ios/452/concert.png"
-                console.log(image)
-                marker.setPosition(results[0].geometry.location),
-                marker.icon = image
-                
-            } else {
-                alert("Error: " + status);
-            }
-            // marker.addEventListener("click", toggleBounce)
-        });
+                if (status === "OK") {
+                      
+                    // console.log(results[i])
+                    resultsMap.setCenter(results[0].geometry.location);
+                    
+                    marker.setPosition(results[0].geometry.location)
+    
+                } else {
+                    alert("Error: " + status);
+                }
+            });
+        }
     });
 }
