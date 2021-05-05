@@ -5,8 +5,11 @@ function formSubmit(){
 }
 
 // Affichage années Creation Date  + ajout de l'évènement formSubmit
+
+// Récupération Début du filtre Création Date
 let startCD = document.getElementById("startCD")
 let fromCD = document.getElementById("fromCD")
+
 fromCD.innerHTML = startCD.value 
 
 startCD.addEventListener("change", function(e){
@@ -16,6 +19,7 @@ startCD.addEventListener('input', function func(e){
     fromCD.innerHTML = e.target.value
 })
 
+// Récupération fin du filtre CRéation Date
 let endCD = document.getElementById("endCD") 
 let toCD = document.getElementById("toCD")
 toCD.innerHTML = endCD.value
@@ -28,6 +32,8 @@ endCD.addEventListener('input', function func(e){
 
 
 // Affichage année First Album + ajout de l'évènement formSubmit
+
+// Récupération Début du filtre First Album
 let startFA = document.getElementById("startFA") 
 let fromFA = document.getElementById("fromFA")
 fromFA.innerHTML = startFA.value
@@ -38,6 +44,7 @@ startFA.addEventListener('input', function func(e){
     fromFA.innerHTML = e.target.value
 })
 
+// Récupération FIN du filtre First Album
 let endFA = document.getElementById("endFA") 
 let toFA = document.getElementById("toFA")
 toFA.innerHTML = endFA.value
@@ -51,6 +58,7 @@ endFA.addEventListener('input', function func(e){
 // Ajout évènement checkbox formsSubmit
 let checkbox = document.querySelectorAll('.checkbox')
 checkbox.forEach(function(checkX){
+    // Assignation de l'évènement à la checkbox
     checkX.addEventListener('click', function(e){
         formSubmit()
     })

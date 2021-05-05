@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+// Création d'une structure pour stocker les données d'un groupe
+// On utilise les clés de l'API pour permettre le Marshalling
 type Group struct {
 	ID int `json:"id"`
 	Image string `json:"image"`
@@ -17,6 +19,7 @@ type Group struct {
 	FirstAlbum string `json:"firstAlbum"`
 }
 
+// création d'une fonction qui va chercher les infos du groupe concerné
 func GetGroups()[]Group {
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 
@@ -26,6 +29,7 @@ func GetGroups()[]Group {
 		Timeout: time.Second * 10, // Timeout after 2 seconds
 	}
 
+	// On va chercher les données à l'url demandée
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -42,18 +46,21 @@ func GetGroups()[]Group {
 		defer res.Body.Close()
 	}
 
+	// On lit les données
 	body, readErr := ioutil.ReadAll(res.Body)
 	if readErr != nil {
 		log.Fatal(readErr)
 	}
 
+	// On récupère les données puis on les Unmarshal grâce à la structure créée.
 	allGroups := []Group{}
 	jsonErr := json.Unmarshal(body, &allGroups)
-	// json.marshal à écrire dans le responsewriter
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
-	// fmt.Print(allGroups)
-	
+
+	// On retourne tableau d'objects de structure OneGroup{}	
 	return allGroups
 }
+
+
