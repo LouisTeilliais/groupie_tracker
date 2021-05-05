@@ -22,13 +22,17 @@ type PageDataEvents2 struct {
 	Relations []data.Relations
 }
 func Events(w http.ResponseWriter, req *http.Request){
+	const path = "./template/events.html"
+
 	groups := data.GetGroups()
+
 	sort.SliceStable(groups, func(i, j int) bool {
 		return groups[i].Name < groups[j].Name
 	})
-	t := template.Must(template.ParseFiles("./template/events.html", "./template/layout/header.html"))
+  t := template.Must(template.ParseFiles(path, "./template/layout/header.html"))
 	var tabGroupsChecked []data.Group
 	var valueSearch string
+
 	if req.Method == "POST" {
 		fmt.Print("Requete OK", "\n")
 		search := req.FormValue("search")
@@ -63,7 +67,8 @@ func Events(w http.ResponseWriter, req *http.Request){
 		thisGroup = data.GetOneGroup(req.FormValue("oneGroup"))
 		groupRelations = data.GetEvents(req.FormValue("oneGroup"))
 	}
-		
+
+		//gestion de l'erreur 500
 	pageEvents := PageDataEvents2{
 		Groups: groups,
 		GroupsFound: tabGroupsChecked,
@@ -72,6 +77,16 @@ func Events(w http.ResponseWriter, req *http.Request){
 		Relations: groupRelations,
 	}
 	fmt.Print("Events - ✅\n")
-	t.Execute(w, pageEvents)
+	
+
+  templ , err := template.ParseFiles(path)	//verification de la validité de la page html
+	if err != nil {
+		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
+		return
+	}else{
+		t.Execute(w, pageEvents)
+		templ = templ
+	}
 
 }
+

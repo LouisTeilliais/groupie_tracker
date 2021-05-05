@@ -9,9 +9,13 @@ import (
 )
 
 func Locations(w http.ResponseWriter, req *http.Request){
-	
+
+
 	groups := data.GetGroups()
-	t := template.Must(template.ParseFiles("./template/locations.html", "./template/layout/header.html", "./template/layout/footer.html"))
+	
+	const path = "./template/locations.html"
+
+	t := template.Must(template.ParseFiles(path, "./template/layout/header.html", "./template/layout/footer.html"))
 	
 	if req.Method == "POST" {
 		
@@ -30,11 +34,19 @@ func Locations(w http.ResponseWriter, req *http.Request){
 		}
 		
 		pageLocations := DataCity{Groups: groups}
-		t.Execute(w, pageLocations)
+	
 		
 		fmt.Print("Locations - ✅\n")
 		
-	
+		//gestion de l'erreur 500
+	templ , err := template.ParseFiles(path)	//verification de la validiter de la page html
+	if err != nil {
+		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
+		return
+	}else{
+		t.Execute(w, pageLocations)
+		templ = templ
+	}
 }
 
 func ConcertsLocations(w http.ResponseWriter, req *http.Request){
@@ -44,6 +56,7 @@ func ConcertsLocations(w http.ResponseWriter, req *http.Request){
 	cities := data.GetCity(indexGroup)
 
 	jsonData, _ := json.Marshal(cities)
+
 
 	w.Header().Add("Content-Type", "application/json")
 	w.Write(jsonData)
