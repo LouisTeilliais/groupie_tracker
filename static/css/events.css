@@ -64,7 +64,7 @@ button:hover{
 }
 
 
-/* base*/
+/* https://codepen.io/Aoyue/pen/pLJqgE */
 
 .flip {
   position: relative;
@@ -86,7 +86,6 @@ button:hover{
   color: white;
   width: 200px;
   height: 100%;
-  /* background-color: #ff6e40; */
   border-radius: 10px;
   text-align:center;
   align-items: center;
