@@ -1,27 +1,13 @@
-#title{
-    position: relative;
-
-    width: 350px;
-    height: 75px;
-
-    top: 5%;
-    left: 20%;
-
-    font-size: 300%;
+#head {
+    float: top;
+    height: 400px;
+    width: 100%;
+    /* background-size: cover;
+    background-image: url(/static/images/801x410_pnl_bercy_2_auto_x2.jpg);
+    margin-top: -5%; */
 }
-#txtBienvenue{
-    position: relative;
-    
-    top: 20%;
-    left: 55%;
-
-    font-size: 225%;
-}
-#txtExplication{
-    position: relative;
-
-    top: 50%;
-    left: 20%;
-
-    font-size: 175%;
+p{
+    text-align: center;
+    font-size: 80px;
+    color: black;
 }

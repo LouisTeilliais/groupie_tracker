@@ -42,7 +42,7 @@ func GetCity(thisID string)[]string{
 	if readErr != nil {
 		log.Fatal(readErr)
 	}
-	fmt.Print(string(body))
+	// fmt.Print(string(body))
 
 	thisCity := CityStruct{}
 	jsonErr := json.Unmarshal(body, &thisCity)

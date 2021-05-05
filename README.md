@@ -38,5 +38,10 @@ Pour l'organisation du travail de groupe, nous avons dès le début créé un [G
 
 Pour se situer dans l'avancement du projet, nous avons créé ce [Trello](https://trello.com/b/mybA3dMd/groupie-tracker) pour pouvoir organiser nos tâches et définir ce que l'on avait à faire. Nous avons décidé des tâches qui nous intéressait le plus pour pouvoir travailler chacun sur notre partie et être le plus efficace possible dans notre production. Lorsque nous rencontrions des difficultés nous nous sommes penchés à plusieurs sur le problème et/ou délégué une fonctionnalité à une autre personne.
 
+Antoine a travaillé en partie sur la partie front avec le HTML et le CSS, ainsi que sur la gestion d'erreur en GO. Louis a travaillé sur la partie de la carte principalement ainsi que sur la création du serveur ou la récupération de certaines données. Olivia a travaillée sur la recupération des données, les tris et la pagination.
+
 ## Idées pour améliorer
+
 ***
+
+Dans les choses a améliorer, on aurait pu rajouter des choses comme le tri par ordre croissant-décroissant que ça soit au niveau alphabétique, sur les dates de création des albums ou du nombre de membres. Avec un petit peu plus de temps on aurait pu rajouter le fait de rajouter plusieurs marqueurs pour les différents concerts des artistes sur la map, cette fonctionnalité n'est pas encore au point.  
