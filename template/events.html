@@ -2,20 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="../static/images/favicon.png">
+    <link rel="icon" href="../static/images/icon.png">
     <link rel="stylesheet" href="../static/css/events.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROUPIE TRACKER</title>
 </head>
+
 <body> 
-    <navbar>
-        <!-- {{template "header"}} -->
-    </navbar>     
-    
-    <div>
+    {{template "header"}}
+
+    <main>
         
         <h1>Événements</h1>
         
@@ -36,11 +32,11 @@
             </div>
             <button type="submit">Rechercher</button>
         </form>
-
-
+        
+        
         <div class="pageEvents">
-        {{ if .GroupsFound }}
-
+            {{ if .GroupsFound }}
+            
             <div class="liste">
                 <h2>Cliquez sur le groupe que vous recherchez.</h2>
                 {{range .GroupsFound}}
@@ -61,14 +57,14 @@
             <div class="group_event">
                 
                 <div class="groupPres">
-                <h2>{{.ThisGroup.Name}} en concert ! </h2>
-
+                    <h2>{{.ThisGroup.Name}} en concert ! </h2>
+                    
                     <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
                 </div>
                 
                 <div class="allConcerts">
                     {{range .Relations}}
-
+                    
                     <div class="flip">
                         <div class="front">
                             <h3>{{.City}}</h3>
@@ -77,7 +73,7 @@
                         <div class="back">
                             <p>Dates</p>
                             {{range $date:=.Dates}}
-                                <p>{{ $date }}</p>
+                            <p>{{ $date }}</p>
                             {{end}}
                         </div>
                     </div>
@@ -88,18 +84,13 @@
                 
             </div>
             {{end}}
-
+            
         </div>
         
         
         
-    </div>
+    </main>
 </body>
 
 <script src="../static/scripts/events.js"></script>  
 </html>
-
-<!-- <img src="../static/images/ARNAUD.JPG" id="imgEvent"> -->
-
-<!-- <button id="next" type="button" onclick="">></button>
-    <button id="back" type="button" onclick=""><</button> -->

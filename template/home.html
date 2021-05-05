@@ -3,36 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="../static/images/favicon.png">
+    <link rel="icon" href="../static/images/icon.png">
     <link rel="stylesheet" href="../static/css/home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROUPIE TRACKER</title>
 </head>
-<header>        {{template "header"}}
-</header>
+
 <body>
-
-    <div id="head">
-        <p>Groupie Tracker</p>
-    </div>
-    
-    <!-- <p id="txtBienvenue">
-        Bienvenue sur Groupie Tracker,
-        <br>    
-        site pour les passionés de musique
-        <br>
-        en tout genre.
-    </p>
-    
-    <p id="txtExplication">
-        Sur Groupie Tracker vous pouvez retrouver toutes
-        <br>
-        les informations dont vous avez besoin.
-        <br>
-        Information sur les artistes/groupes, lieux 
-        <br>
-        et évènements dans le monde entier.
-
-    </p> -->
+    {{template "header"}}
+    <main>
+        <div class="presentation">
+            <h1>Bienvenue sur Groupie Tracker !
+            </h1>
+            <h2>Nous vous invitons à naviguer sur les différentes pages : <a href="/artistes">Artistes</a>, <a href="/locations">Maps</a> et <a href="/events">Concerts</a> </h2>
+            <p> Site réalisé par Louis TEILLIAIS, Antoine BOUFFARD et Olivia MOREAU, dans le cadre du cursus B1 Informatique à Nantes Ynov Campus.             
+            </p>
+        </div>
+    </main>
 </body>
 </html>

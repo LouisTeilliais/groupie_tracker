@@ -6,9 +6,10 @@ h1 {
 .options {
     width:25%;
     height:100%;
-    padding:10px;
+
     color:#f5f0e1;
     text-align: center;
+
 }
 
 form{
@@ -36,7 +37,6 @@ margin-bottom: 15px;
     grid-gap: 10px;
     width:70%;
     height:auto;
-    margin-top: 20%;
     
 }
 

@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../../static/images/icon.png">
+
     <link rel="stylesheet" href="../static/css/artistes.css">
-    <link rel="icon" href="../static/images/favicon.png">
     <link rel="stylesheet" href="../static/css/style.css">
 
     
@@ -12,14 +13,11 @@
     <title>GROUPIE TRACKER</title>
 </head>
 
-<header>
-    <!-- {{template "header"}} -->
-    
-</header>
 <body>
-    <div id = "head"> 
-        <p>Artistes</p>
-    </div>
+    {{template "header"}}
+
+    <main>
+    <h1>Artistes</h1>
     
     <div class="pageArtistes">
     <div  class="options">
@@ -110,5 +108,6 @@
         </div>
     </div>
     <script src="../static/scripts/artistes.js"></script> 
+</main>
 </body>
 </html>

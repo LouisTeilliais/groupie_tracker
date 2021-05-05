@@ -44,4 +44,5 @@ Antoine a travaillé en partie sur la partie front avec le HTML et le CSS, ainsi
 
 ***
 
-Dans les choses a améliorer, on aurait pu rajouter des choses comme le tri par ordre croissant-décroissant que ça soit au niveau alphabétique, sur les dates de création des albums ou du nombre de membres. Avec un petit peu plus de temps on aurait pu rajouter le fait de rajouter plusieurs marqueurs pour les différents concerts des artistes sur la map, cette fonctionnalité n'est pas encore au point.  
+Dans les choses a améliorer, on aurait pu rajouter des choses comme le tri par ordre croissant-décroissant que ça soit au niveau alphabétique, sur les dates de création des albums ou du nombre de membres. Avec un petit peu plus de temps on aurait pu rajouter le fait de rajouter plusieurs marqueurs pour les différents concerts des artistes sur la map, cette fonctionnalité n'est pas encore au point. Ansi que une page d'accueil un peu plus propre que celle que l'on a actuellement.
+

@@ -1,5 +1,7 @@
+
 body {
     background:#ffc13b;
+    margin:0;
 }
 
 h1{
@@ -22,7 +24,7 @@ h3 {
     text-align:center;    
     color: #f5f0e1;
     
-}
+}   
 
 .oneGroup {
     padding-top:5px;
