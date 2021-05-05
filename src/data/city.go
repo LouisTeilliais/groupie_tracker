@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"fmt"
+	// "fmt"
 	"net/http"
 	"time"
 )
@@ -16,12 +16,11 @@ type CityStruct struct {
 func GetCity(thisID string)[]string{
 
 	url := "https://groupietrackers.herokuapp.com/api/locations/" + thisID
-	// fmt.Print(url)
 	
 	spaceClient := http.Client{
 		Timeout: time.Second * 2, // Timeout after 2 seconds
 	}
-	fmt.Print(url)
+
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -42,7 +41,7 @@ func GetCity(thisID string)[]string{
 	if readErr != nil {
 		log.Fatal(readErr)
 	}
-	fmt.Print(string(body))
+	// fmt.Print(string(body))
 
 	thisCity := CityStruct{}
 	jsonErr := json.Unmarshal(body, &thisCity)

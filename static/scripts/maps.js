@@ -53,6 +53,7 @@ function codeAddress(geocoder, resultsMap, marker) {
     
                 } else {
                     alert("Error: " + status);
+                    break
                 }
             });
         }

@@ -12,17 +12,17 @@
 </head>
 <body> 
     <navbar>
-        {{template "header"}}
+        <!-- {{template "header"}} -->
     </navbar>     
     
     <div>
         
-        <h1>Liste des Evenements</h1>
+        <h1>Événements</h1>
         
         <form action="/events?oneGroup=" id="formSearch" method="POST">
             
-            <div>
-                <input name="search" list="allData" type="search" id="search_bar" value={{.ValueSearch}}>
+            <div id="searchBar">
+                <input placeholder="Recherchez un artiste/groupe..." name="search" list="allData" type="search" id="search_bar" value="{{.ValueSearch}}">
                 <datalist id="allData">
                     {{range .Groups}}
                     <option value="{{.Name}}">| Groupe</option>
@@ -36,10 +36,13 @@
             </div>
             <button type="submit">Rechercher</button>
         </form>
-        
+
+
         <div class="pageEvents">
+        {{ if .GroupsFound }}
+
             <div class="liste">
-                {{ if .GroupsFound }}
+                <h2>Cliquez sur le groupe que vous recherchez.</h2>
                 {{range .GroupsFound}}
                 <button onclick="displayGroup('{{.ID}}')" name="oneGroup" value="{{.ID}}" class="oneGroup">
                     <h2> {{ .Name}}</h2>
@@ -51,27 +54,41 @@
                     </p>
                 </button>
                 {{end}}
-                {{else}}
-                <p>Recherchez un groupe, puis cliquez dessus pour voir ses dates de concert.</p>
-                {{end}}
+                
             </div>
-            
+            {{end}}
+            {{ if .Relations }}
             <div class="group_event">
-                {{ if .Relations }}
-                <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
-                <h1>{{.ThisGroup.Name}} en concert ! </h1>
-                {{ range .Relations}}
-                <div class="concert">
-                    <p>{{.City}}</p>
-                    {{range $date:=.Dates}}
-                    <p>{{ $date }}</p>
-                    {{end}}
+                
+                <div class="groupPres">
+                <h2>{{.ThisGroup.Name}} en concert ! </h2>
+
+                    <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
                 </div>
-                {{end}}
-                {{else}}
-                <p> Ici, s'affichera le groupe sélectionné et ses événements.</p>
-                {{end}}
+                
+                <div class="allConcerts">
+                    {{range .Relations}}
+
+                    <div class="flip">
+                        <div class="front">
+                            <h3>{{.City}}</h3>
+                            <p>{{.Country}}</p>
+                        </div>
+                        <div class="back">
+                            <p>Dates</p>
+                            {{range $date:=.Dates}}
+                                <p>{{ $date }}</p>
+                            {{end}}
+                        </div>
+                    </div>
+                    {{end}}
+                    
+                </div>
+                
+                
             </div>
+            {{end}}
+
         </div>
         
         
