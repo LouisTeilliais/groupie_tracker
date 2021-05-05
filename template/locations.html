@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="icon" href="../static/images/attachment_82759076.png">
-        <link rel="stylesheet" href="../static/css/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/static/css/map.css" rel="stylesheet">
-        <title>GROUPIE TRACKER</title>
-    </head>
-    <body>
-        <header>
-            {{template "header"}}
-        </header>
-        
-        <div id="head">
-            <p>Locations</p>
-        </div>
-        <br>
-        
-        <!-- <div id="floating-panel">
-            <input id="address" type="textbox" value="" />
-            <input id="submit" type="button" value="Geocode" />
-        </div> -->
-        <br>
-        <form>
-            <select id="city" name="City">
-                <option value="" selected >Select your city</option>
-                <option value="north_carolina-usa">North Carolina - USA</option>
-                <option value="vancouver-canada">Vancouver - Canada</option>
-                <option value="paris-france">Paris - France</option>
-                <option value="valanjou-france">Valanjou - France</option>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../static/images/attachment_82759076.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/map.css" rel="stylesheet">
+    <title>GROUPIE TRACKER</title>
+</head> 
 
-            </select>
-        </form>
-        <div id="map">Google Maps</div>
-        <script src="/static/scripts/maps.js" defer></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAenIyntci-S0QlSifbhifRRuTbtlD7_Kk&callback=initMap&libraries=&v=weekly"
-        defer
-        ></script> 
-    </body>
+<body>
+    
+    <header>
+        {{template "header"}}
+    </header>
+    
+    <div id="head">
+        <p>Locations</p>
+    </div>
+    
+    <br>
+    <form method="POST">
+        <select class="liste" id ="city"> 
+            <option value ="1" selected >Select your artist</option>
+            {{ if .Groups }}
+            {{ range .Groups }}
+            <option name="groups" value={{.ID}} class="groups" >{{.Name}}</option>
+            {{end}}
+            {{end}}
+        </select>
+    </form>
+    <br>
+    <div id = "all_body">
+        <div id ="title_map">
+            <h2>Map :</h2>
+            <div id="map">Google Maps</div>
+        </div>
+        
+        <div id ="city_content">
+            <h2>Les concerts de votre artiste :</h2>
+            <div id="villes_artistes"></div>
+        </div>
+        
+    </div>
+    
+    
+    
+    <script src="/static/scripts/maps.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAenIyntci-S0QlSifbhifRRuTbtlD7_Kk&callback=initMap&libraries=&v=weekly"
+    defer
+    ></script> 
+</body>
 </html>     

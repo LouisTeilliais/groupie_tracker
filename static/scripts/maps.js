@@ -10,7 +10,7 @@ function initMap(){
         console.log("Longitude : " + lng)
         
         let map = new google.maps.Map(document.getElementById("map"), {
-            zoom : 10,
+            zoom : 7,
             center : gps = {lat, lng},
         });
         
@@ -21,38 +21,57 @@ function initMap(){
         
         const geocoder = new google.maps.Geocoder();
         codeAddress(geocoder, map, marker);
+        
     })
     
 }
+
 function codeAddress(geocoder, resultsMap, marker) {
     
     const address = document.querySelector('select')
     
-    address.addEventListener("change", function(event){
+    address.addEventListener("change", async function(event){ 
         
-       
         let addressValue = event.target.value
-        console.log(addressValue)
+        // console.log(addressValue)
         
-        // let position = address.geometry.location
-        // console.log(position)
+        let res = await fetch(`/cities?groups=${addressValue}`)
+        let cities = await res.json()
+        console.log(cities)
         
-        // const address = document.getElementById("address").value;
-        console.log(geocoder)
-        geocoder.geocode({ address: addressValue }, (results, status) => {
+        const divCities = document.getElementById("villes_artistes")
+        while (divCities.firstChild){
+            divCities.removeChild(divCities.firstChild);
+        }
+        // divCities.append("Les concerts de votre artiste :")
+        for (let i = 0; i < cities.length; i++){
             
-            if (status === "OK") {
-                resultsMap.setCenter(results[0].geometry.location);
+            let replaceUnderscore = cities[i].replaceAll("_", " ")
+            let replace = replaceUnderscore.replace("-", " ")
+            const capitalize = replace.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+            let city = document.createElement("p");
+            city.textContent = capitalize
+            divCities.append(city)
+        }
+        console.log(divCities)
+        
+        for (let i = 0; i < cities.length; i ++) {
+            console.log(cities.length)
+            
+            geocoder.geocode({ address: cities[i]}, (results, status) => {
                 
-                const image = "https://img.icons8.com/ios/452/concert.png"
-                console.log(image)
-                marker.setPosition(results[0].geometry.location),
-                marker.icon = image
-                
-            } else {
-                alert("Error: " + status);
-            }
-            // marker.addEventListener("click", toggleBounce)
-        });
+                if (status === "OK") {
+                    
+                    // console.log(results[i])
+                    resultsMap.setCenter(results[0].geometry.location);
+                    
+                    marker.setPosition(results[0].geometry.location)
+                    
+                } else {
+                    alert("Error: " + status);
+                    break
+                }
+            });
+        }
     });
 }
