@@ -4,23 +4,22 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	// "fmt"
 	"net/http"
 	"time"
 )
 
 type CityStruct struct {
-	City []string  `json:"locations"`
+	City []string  `json:"locations"`  // "isoler" les locations dans notre structure
 }
 
 func GetCity(thisID string)[]string{
 
-	url := "https://groupietrackers.herokuapp.com/api/locations/" + thisID
+	url := "https://groupietrackers.herokuapp.com/api/locations/" + thisID // récupération de l'url 
 	
 	spaceClient := http.Client{
 		Timeout: time.Second * 2, // Timeout after 2 seconds
 	}
-
+	// Gestion d'erreur
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -41,13 +40,12 @@ func GetCity(thisID string)[]string{
 	if readErr != nil {
 		log.Fatal(readErr)
 	}
-	// fmt.Print(string(body))
-
-	thisCity := CityStruct{}
+	// Unmarshal les données sous forme de structure
+	thisCity := CityStruct{} 	
 	jsonErr := json.Unmarshal(body, &thisCity)
 	
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
-	return thisCity.City
+	return thisCity.City // return le tableau de string 
 }

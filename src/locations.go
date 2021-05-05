@@ -11,7 +11,7 @@ import (
 func Locations(w http.ResponseWriter, req *http.Request){
 
 
-	groups := data.GetGroups()
+	groups := data.GetGroups() // importation des groupes
 	
 	const path = "./template/locations.html"
 
@@ -20,24 +20,18 @@ func Locations(w http.ResponseWriter, req *http.Request){
 	if req.Method == "POST" {
 		
 		fmt.Print("req OK", "\n")
-		// indexGroup := req.FormValue("groups")
-		// fmt.Print("coucou")
-		// cities := data.GetCity(indexGroup)
-		// fmt.Print(cities)
+		
 	}
-		// idCity := req.FormValue("city")
 		
 		type DataCity struct {
-			// Cities []string
-			// ThisGroup data.OneGroup
 			Groups []data.Group
 		}
-		
+		// tableau des location dans lequel on ajoute notre structure DataCity.
 		pageLocations := DataCity{Groups: groups}
 	
 		
 		
-		//gestion de l'erreur 500
+	//gestion de l'erreur 500
 	if e != nil {
 		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
 		return
@@ -50,11 +44,11 @@ func Locations(w http.ResponseWriter, req *http.Request){
 
 func ConcertsLocations(w http.ResponseWriter, req *http.Request){
 
-	// groups := data.GetGroups()
-	indexGroup := req.FormValue("groups")
-	cities := data.GetCity(indexGroup)
+	
+	indexGroup := req.FormValue("groups") // on récupère l'index de ce que nous retourne la valeur de" groups"
+	cities := data.GetCity(indexGroup) // récupere grace a la fonction getCity la valeurs des villes grâce a l'index
 
-	jsonData, _ := json.Marshal(cities)
+	jsonData, _ := json.Marshal(cities) // mettre ses données sous formats JSON
 
 
 	w.Header().Add("Content-Type", "application/json")

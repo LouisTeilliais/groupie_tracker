@@ -1,25 +1,25 @@
 function initMap(){
-    navigator.geolocation.getCurrentPosition(pos => {
+    navigator.geolocation.getCurrentPosition(pos => { // Demande de localisation a l'utilisateur
         
         let crd = pos.coords
-        
+        // stockage de la lontitude et la latitude
         lat = crd.latitude;
-        lng = crd.longitude;
+        lng = crd.longitude
         
         console.log("Latitude : " + lat)
         console.log("Longitude : " + lng)
         
-        let map = new google.maps.Map(document.getElementById("map"), {
+        let map = new google.maps.Map(document.getElementById("map"), { // Postion de l'utilisateur sur la carte
             zoom : 7,
             center : gps = {lat, lng},
         });
         
-        const marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({ // Placement d'un marqueur a sa position.
             position: gps,
             map: map,
         });
         
-        const geocoder = new google.maps.Geocoder();
+        const geocoder = new google.maps.Geocoder(); // appel de la fonction de geocoding de Google Maps
         codeAddress(geocoder, map, marker);
         
     })
@@ -28,22 +28,25 @@ function initMap(){
 
 function codeAddress(geocoder, resultsMap, marker) {
     
-    const address = document.querySelector('select')
+    const address = document.querySelector('select') 
     
-    address.addEventListener("change", async function(event){ 
+    address.addEventListener("change", async function(event){  // recupération des valeurs de notre select
         
         let addressValue = event.target.value
         // console.log(addressValue)
         
+        // récupérer les données des locations de l'API avec un await pour éviter toute les requetes en même temps
         let res = await fetch(`/cities?groups=${addressValue}`)
         let cities = await res.json()
         console.log(cities)
         
+
+        // affichage de nos concerts en bonne forme
         const divCities = document.getElementById("villes_artistes")
         while (divCities.firstChild){
             divCities.removeChild(divCities.firstChild);
         }
-        // divCities.append("Les concerts de votre artiste :")
+        
         for (let i = 0; i < cities.length; i++){
             
             let replaceUnderscore = cities[i].replaceAll("_", " ")
@@ -58,14 +61,14 @@ function codeAddress(geocoder, resultsMap, marker) {
         for (let i = 0; i < cities.length; i ++) {
             console.log(cities.length)
             
-            geocoder.geocode({ address: cities[i]}, (results, status) => {
+            geocoder.geocode({ address: cities[i]}, (results, status) => { // utilisation de geocoding avec les valeur que l'on a récupérer (cities)
                 
                 if (status === "OK") {
                     
                     // console.log(results[i])
-                    resultsMap.setCenter(results[0].geometry.location);
+                    resultsMap.setCenter(results[0].geometry.location); // placement de la position de la requete demandée
                     
-                    marker.setPosition(results[0].geometry.location)
+                    marker.setPosition(results[0].geometry.location) // placement du marqueur
                     
                 } else {
                     alert("Error: " + status);
