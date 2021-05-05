@@ -1,0 +1,66 @@
+
+h1 {
+    text-align:center;
+}
+
+.options {
+    width:25%;
+    height:100%;
+
+    color:#f5f0e1;
+    text-align: center;
+
+}
+
+form{
+    background-color:#1e3d59;
+
+}
+
+.pageArtistes {
+    float: left;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+
+.years{
+margin-top:0;
+margin-bottom: 15px;
+}
+
+.groups{
+    
+    display: grid;
+    float: left;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width:70%;
+    height:auto;
+    
+}
+
+.oneGroup {
+    width:auto;
+
+}
+
+.oneGroup p {
+    margin:2px;
+}
+.oneGroup h3 {
+    margin:5px;
+}
+
+input[type=range] {
+
+    cursor:-webkit-grabbing ;
+}
+datalist {
+    display:flex;
+}
+
+button:hover{
+
+    color:#ff6e40;
+}
