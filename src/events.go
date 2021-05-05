@@ -7,8 +7,10 @@ import (
 	data "./data"
 )
 func Events(w http.ResponseWriter, req *http.Request){
+	const path = "./template/events.html"
+
 	groups := data.GetGroups()
-	t := template.Must(template.ParseFiles("./template/events.html", "./template/layout/header.html"))
+	t := template.Must(template.ParseFiles(path, "./template/layout/header.html"))
 	
 	if req.Method == "POST" {
 		idGroup := req.FormValue("groups")
@@ -38,5 +40,15 @@ func Events(w http.ResponseWriter, req *http.Request){
 		pageDates2 := PageDataDates{Groups: groups}
 		fmt.Print("Events - ✅\n")
 		t.Execute(w, pageDates2)
+	}
+
+	//gestion de l'erreur 500
+	templ , err := template.ParseFiles(path)	//verification de la validiter de la page html
+	if err != nil {
+		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
+		return
+	}else{
+		t.Execute(w, pageDates2)
+		templ = templ
 	}
 }
