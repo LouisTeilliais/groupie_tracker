@@ -23,7 +23,7 @@ func Accueil(w http.ResponseWriter, req *http.Request){		//fonction de qui affic
         http.Error(w, "404 not found", http.StatusNotFound)
         return
     }
-
+	
 
 	//gestion de l'erreur 500
 

@@ -1,3 +1,4 @@
+
 h1 {
     text-align:center;
 }
@@ -16,6 +17,7 @@ form{
 }
 
 .pageArtistes {
+    float: left;
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -27,15 +29,20 @@ margin-bottom: 15px;
 }
 
 .groups{
+    
     display: grid;
+    float: left;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     width:70%;
     height:auto;
+    margin-top: 20%;
+    
 }
 
 .oneGroup {
     width:auto;
+
 }
 
 .oneGroup p {

@@ -14,9 +14,10 @@ func Locations(w http.ResponseWriter, req *http.Request){
 	t := template.Must(template.ParseFiles("./template/locations.html", "./template/layout/header.html", "./template/layout/footer.html"))
 	
 	if req.Method == "POST" {
+		
 		fmt.Print("req OK", "\n")
 		// indexGroup := req.FormValue("groups")
-		fmt.Print("coucou")
+		// fmt.Print("coucou")
 		// cities := data.GetCity(indexGroup)
 		// fmt.Print(cities)
 	}
