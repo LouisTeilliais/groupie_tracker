@@ -29,7 +29,7 @@ func Events(w http.ResponseWriter, req *http.Request){
 	sort.SliceStable(groups, func(i, j int) bool {
 		return groups[i].Name < groups[j].Name
 	})
-  t := template.Must(template.ParseFiles(path, "./template/layout/header.html"))
+  t, e := template.ParseFiles(path, "./template/layout/header.html")
 	var tabGroupsChecked []data.Group
 	var valueSearch string
 
@@ -78,14 +78,11 @@ func Events(w http.ResponseWriter, req *http.Request){
 	}
 	fmt.Print("Events - ✅\n")
 	
-
-  templ , err := template.ParseFiles(path)	//verification de la validité de la page html
-	if err != nil {
+	if e != nil {
 		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
 		return
 	}else{
 		t.Execute(w, pageEvents)
-		templ = templ
 	}
 
 }

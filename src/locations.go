@@ -15,7 +15,7 @@ func Locations(w http.ResponseWriter, req *http.Request){
 	
 	const path = "./template/locations.html"
 
-	t := template.Must(template.ParseFiles(path, "./template/layout/header.html", "./template/layout/footer.html"))
+	t, e := template.ParseFiles(path, "./template/layout/header.html", "./template/layout/footer.html")
 	
 	if req.Method == "POST" {
 		
@@ -36,16 +36,15 @@ func Locations(w http.ResponseWriter, req *http.Request){
 		pageLocations := DataCity{Groups: groups}
 	
 		
-		fmt.Print("Locations - ✅\n")
 		
 		//gestion de l'erreur 500
-	templ , err := template.ParseFiles(path)	//verification de la validiter de la page html
-	if err != nil {
+	if e != nil {
 		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
 		return
 	}else{
 		t.Execute(w, pageLocations)
-		templ = templ
+		fmt.Print("Locations - ✅\n")
+
 	}
 }
 

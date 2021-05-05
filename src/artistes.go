@@ -35,10 +35,9 @@ var firstAlbum = RangeDate{"1963", "2018"}
 
 // Fonction lancée à /artistes
 func Artistes(w http.ResponseWriter, req *http.Request){
-<<<<<<< HEAD
+	const path = "./template/artistes.html"
 
-
-	t := template.Must(template.ParseFiles("./template/artistes.html", "./template/layout/header.html"))
+	 t, e := template.ParseFiles(path, "./template/layout/header.html")
 	
 	// Boucle sur le nombre de checkbox à afficher
 	var tabMembers []NumberMembers
@@ -167,8 +166,16 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 		RangeFirstAlbum: firstAlbum,
 		NumberPages: tabNumberPages,
 	}
+
+		//gestion de l'erreur 500
+	if e != nil {
+		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
+		return
+	}else{
+		t.Execute(w, pageGroups)
+	}
 	//Exécution de la page avec les données de pageGroups
-	t.Execute(w, pageGroups)
+	// t.Execute(w, pageGroups)
 	fmt.Print("Artistes - ✅\n")
 }
 
@@ -181,26 +188,5 @@ func Paging(tabGroups []data.Group) []int{
 	for i := 1; i<=numberOfPages; i++{
 		tabNumbers = append(tabNumbers, i)
 	}
-
-	groups := data.GetGroups()
-	pageGroups := PageDataGroups{Groups: groups}
-	
-	const path = "./template/artistes.html"
-
-	t := template.Must(template.ParseFiles(path, "./template/layout/header.html"))
-	fmt.Print("Artistes - ✅\n")
-
-
 	return tabNumbers
-
-	//gestion de l'erreur 500
-	templ , err := template.ParseFiles(path)	//verification de la validiter de la page html
-	if err != nil {
-		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
-		return
-	}else{
-		t.Execute(w, pageGroups)
-		templ = templ
-	}
-
 }
