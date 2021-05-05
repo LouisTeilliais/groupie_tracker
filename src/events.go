@@ -8,10 +8,10 @@ import (
 	"sort"
 	data "./data"
 )
-
+//Création de 2 structures contenant les données à envoyer sur la page
 type PageDataEvents struct {
 	Groups []data.Group
-	Relations []data.Relations
+	Concert []data.Concert
 	ThisGroup data.OneGroup
 }
 type PageDataEvents2 struct {
@@ -19,33 +19,48 @@ type PageDataEvents2 struct {
 	GroupsFound []data.Group
 	ValueSearch string
 	ThisGroup data.OneGroup
-	Relations []data.Relations
+	Concert []data.Concert
 }
+
+
+// Fonction lancée à /events
 func Events(w http.ResponseWriter, req *http.Request){
+	
+	//Importaiton des templates utiles pour l'affichage de la page
 	const path = "./template/events.html"
+	t, e := template.ParseFiles(path, "./template/layout/header.html")
 
+	// Importation de tous les groupes
 	groups := data.GetGroups()
-
 	sort.SliceStable(groups, func(i, j int) bool {
 		return groups[i].Name < groups[j].Name
 	})
-  t, e := template.ParseFiles(path, "./template/layout/header.html")
-	var tabGroupsChecked []data.Group
-	var valueSearch string
+
+	// Création de 2 variables 
+	var tabGroupsChecked []data.Group // contiendra les groupes correspondants à la recherche
+	var valueSearch string // contiendra la recherche
 
 	if req.Method == "POST" {
-		fmt.Print("Requete OK", "\n")
+		// Récupération de la recherche 
 		search := req.FormValue("search")
 
+
+		// Boucle sur tous les groupes
 		for _, v := range groups {
+
+			// Création d'une Regexp pour vérifier si le gorupe correspond
 			checkName, _ := regexp.MatchString("(?i)"+search, v.Name)
+			// En fonction du nom du groupe
 			if checkName {
+				// Ajout du groupe si correspond
 				tabGroupsChecked = append(tabGroupsChecked, v)
 				continue
 			} else {
+				// En fonction des noms des membres
 				for _, member := range v.Members{
 					checkMember, _ := regexp.MatchString("(?i)"+search, member)
 					if checkMember {
+						// Ajout du groupe si correspond
 						tabGroupsChecked = append(tabGroupsChecked, v)
 						break
 					}
@@ -58,31 +73,35 @@ func Events(w http.ResponseWriter, req *http.Request){
 		valueSearch = ""
 	}
 
+	// Création de variables pour récupérer le nom et les concerts d'un groupe
 	var thisGroup data.OneGroup
-	var groupRelations []data.Relations
+	var groupConcert []data.Concert
 	if req.FormValue("oneGroup") == "" {
-		groupRelations = nil
+		groupConcert = nil
 
 	} else {
+		// Récupération des données du groupe en question
 		thisGroup = data.GetOneGroup(req.FormValue("oneGroup"))
-		groupRelations = data.GetEvents(req.FormValue("oneGroup"))
+		groupConcert = data.GetEvents(req.FormValue("oneGroup"))
 	}
 
-		//gestion de l'erreur 500
-	pageEvents := PageDataEvents2{
+	// Regroupement de toutes les données nécessaires pour l'affichage de la page
+	pageEvents := PageDataEvents2 {
 		Groups: groups,
 		GroupsFound: tabGroupsChecked,
 		ValueSearch: valueSearch,
 		ThisGroup: thisGroup,
-		Relations: groupRelations,
+		Concert: groupConcert,
 	}
-	fmt.Print("Events - ✅\n")
-	
+		
+	//gestion de l'erreur 500
 	if e != nil {
 		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
 		return
-	}else{
+	} else {
+		//Exécution de la page avec les données de pageGroups
 		t.Execute(w, pageEvents)
+		fmt.Print("Events - ✅\n")
 	}
 
 }

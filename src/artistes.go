@@ -29,15 +29,17 @@ type PageDataGroups struct {
 	NumberPages []int
 }
 
+// Création de variables utiles au lancement de la page
 var nbMembersMax = 8
 var creationDate = RangeDate{"1958", "2015"}
 var firstAlbum = RangeDate{"1963", "2018"}
 
 // Fonction lancée à /artistes
 func Artistes(w http.ResponseWriter, req *http.Request){
+	
+	// importation des templates utiles pour l'affichage de la page
 	const path = "./template/artistes.html"
-
-	 t, e := template.ParseFiles(path, "./template/layout/header.html")
+	t, e := template.ParseFiles(path, "./template/layout/header.html")
 	
 	// Boucle sur le nombre de checkbox à afficher
 	var tabMembers []NumberMembers
@@ -131,7 +133,7 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 		tabGroups = tabGroups3
 		// FIRST ALBUM FINI
 		
-	} else{
+	} else {
 		// Si aucun critères de tri n'a été sélectionné, on récupère tous les groupes
 		tabGroups = groups
 	}
@@ -143,9 +145,11 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 	// En fonction de la page cliquée
 	var startElem int
 	var endElem int
+
 	page,_ := strconv.Atoi(req.FormValue("page"))
 	startElem = (page-1)*9 
 	endElem = startElem + 9
+
 	if endElem>len(tabGroups){
 		endElem = startElem + (len(tabGroups)-startElem)
 	}
@@ -167,16 +171,16 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 		NumberPages: tabNumberPages,
 	}
 
-		//gestion de l'erreur 500
+	//gestion de l'erreur 500
 	if e != nil {
 		http.Error(w, "Internal Serveur Error 500", http.StatusInternalServerError)
 		return
-	}else{
+	} else{
+		//Exécution de la page avec les données de pageGroups
 		t.Execute(w, pageGroups)
-	}
-	//Exécution de la page avec les données de pageGroups
-	// t.Execute(w, pageGroups)
 	fmt.Print("Artistes - ✅\n")
+	}
+	
 }
 
 func Paging(tabGroups []data.Group) []int{
