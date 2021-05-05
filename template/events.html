@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="icon" href="../static/images/favicon.png">
-        <link rel="stylesheet" href="../static/css/events.css">
-        <link rel="stylesheet" href="../static/css/header.css">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GROUPIE TRACKER</title>
-    </head>
-    <body> 
-        <navbar>
-            {{template "header"}}
-        </navbar>     
-        <form id="form">
-            <input type="text" id="search"  placeholder="Nom du groupe...">
-            <button type="submit"  id="btSearch">Search</button>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../static/images/favicon.png">
+    <link rel="stylesheet" href="../static/css/events.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUPIE TRACKER</title>
+</head>
+<body> 
+    <navbar>
+        <!-- {{template "header"}} -->
+    </navbar>     
+    
+    <div>
+        
+        <h1>Événements</h1>
+        
+        <form action="/events?oneGroup=" id="formSearch" method="POST">
+            
+            <div id="searchBar">
+                <input placeholder="Recherchez un artiste/groupe..." name="search" list="allData" type="search" id="search_bar" value="{{.ValueSearch}}">
+                <datalist id="allData">
+                    {{range .Groups}}
+                    <option value="{{.Name}}">| Groupe</option>
+                    {{end}}
+                    {{range .Groups}}
+                    {{range .Members}}
+                    <option value="{{.}}">| Member</option>
+                    {{end}}
+                    {{end}}
+                </datalist>
+            </div>
+            <button type="submit">Rechercher</button>
         </form>
-        <div>
 
-            <h1>Liste des Evenements</h1>
-        <form method="POST">
 
-            <div class="liste"> 
-                {{ if .Groups }}
-            {{ range .Groups }}
-            <button name="groups" value={{.ID}} class="groups" >{{.Name}}</button>
+        <div class="pageEvents">
+        {{ if .GroupsFound }}
+
+            <div class="liste">
+                <h2>Cliquez sur le groupe que vous recherchez.</h2>
+                {{range .GroupsFound}}
+                <button onclick="displayGroup('{{.ID}}')" name="oneGroup" value="{{.ID}}" class="oneGroup">
+                    <h2> {{ .Name}}</h2>
+                    <h3>Membres</h3>
+                    <p> |
+                        {{range $member := .Members}}
+                        <span> {{$member}} |</span>
+                        {{end}}
+                    </p>
+                </button>
                 {{end}}
-            {{end}}
                 
             </div>
-        </form>
+            {{end}}
             {{ if .Relations }}
             <div class="group_event">
-                <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
-                <p>{{.ThisGroup.Name}}</p>
-            {{ range .Relations}}
-                <p>{{.City}}</p>
-                {{range $date:=.Dates}}
-                <p>{{ $date }}</p>
-                {{end}}
-                {{end}}
+                
+                <div class="groupPres">
+                <h2>{{.ThisGroup.Name}} en concert ! </h2>
+
+                    <img src="{{.ThisGroup.Image}}" alt="Image du groupe {{.ThisGroup.Name}}">
+                </div>
+                
+                <div class="allConcerts">
+                    {{range .Relations}}
+
+                    <div class="flip">
+                        <div class="front">
+                            <h3>{{.City}}</h3>
+                            <p>{{.Country}}</p>
+                        </div>
+                        <div class="back">
+                            <p>Dates</p>
+                            {{range $date:=.Dates}}
+                                <p>{{ $date }}</p>
+                            {{end}}
+                        </div>
+                    </div>
+                    {{end}}
+                    
+                </div>
+                
+                
             </div>
             {{end}}
 
         </div>
-    </body>
+        
+        
+        
+    </div>
+</body>
 
-    <script src="../static/scripts/events.js"></script>  
+<script src="../static/scripts/events.js"></script>  
 </html>
 
-                <!-- <img src="../static/images/ARNAUD.JPG" id="imgEvent"> -->
+<!-- <img src="../static/images/ARNAUD.JPG" id="imgEvent"> -->
 
 <!-- <button id="next" type="button" onclick="">></button>
-                <button id="back" type="button" onclick=""><</button> -->
+    <button id="back" type="button" onclick=""><</button> -->

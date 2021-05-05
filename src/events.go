@@ -4,39 +4,74 @@ import (
 	"text/template"
 	"fmt"
 	"net/http"
+	"regexp"
+	"sort"
 	data "./data"
 )
+
+type PageDataEvents struct {
+	Groups []data.Group
+	Relations []data.Relations
+	ThisGroup data.OneGroup
+}
+type PageDataEvents2 struct {
+	Groups []data.Group
+	GroupsFound []data.Group
+	ValueSearch string
+	ThisGroup data.OneGroup
+	Relations []data.Relations
+}
 func Events(w http.ResponseWriter, req *http.Request){
 	groups := data.GetGroups()
+	sort.SliceStable(groups, func(i, j int) bool {
+		return groups[i].Name < groups[j].Name
+	})
 	t := template.Must(template.ParseFiles("./template/events.html", "./template/layout/header.html"))
-	
+	var tabGroupsChecked []data.Group
+	var valueSearch string
 	if req.Method == "POST" {
-		idGroup := req.FormValue("groups")
-		fmt.Printf("Requête POST OK | ID du groupe : %s | OK - ✅\n", idGroup)
-		
+		fmt.Print("Requete OK", "\n")
+		search := req.FormValue("search")
 
-		// fmt.Printf("Retour GetEvents : %s", relations)
-		type PageDataDates struct {
-			Dates data.Date
-			ThisGroup data.OneGroup
-			Groups []data.Group
-			Relations []data.Relations
+		for _, v := range groups {
+			checkName, _ := regexp.MatchString("(?i)"+search, v.Name)
+			if checkName {
+				tabGroupsChecked = append(tabGroupsChecked, v)
+				continue
+			} else {
+				for _, member := range v.Members{
+					checkMember, _ := regexp.MatchString("(?i)"+search, member)
+					if checkMember {
+						tabGroupsChecked = append(tabGroupsChecked, v)
+						break
+					}
+				}
+			}
 		}
-
-		relations := data.GetEvents(idGroup)
-		dates := data.GetDates(idGroup)
-		group := data.GetOneGroup(idGroup)
-		// fmt.Printf("dates %v", dates)
-		pageDates := PageDataDates{Dates: dates, Groups: groups, ThisGroup: group, Relations:relations}
-		t.Execute(w, pageDates)
-		//w.Headers().Add("Content-Type", "application/json") ajouter des headers
-		//w.Write chercher doc, ajouter les données
+		valueSearch = search
 	} else {
-		type PageDataDates struct {
-			Groups []data.Group
-		}
-		pageDates2 := PageDataDates{Groups: groups}
-		fmt.Print("Events - ✅\n")
-		t.Execute(w, pageDates2)
+		tabGroupsChecked = nil
+		valueSearch = ""
 	}
+
+	var thisGroup data.OneGroup
+	var groupRelations []data.Relations
+	if req.FormValue("oneGroup") == "" {
+		groupRelations = nil
+
+	} else {
+		thisGroup = data.GetOneGroup(req.FormValue("oneGroup"))
+		groupRelations = data.GetEvents(req.FormValue("oneGroup"))
+	}
+		
+	pageEvents := PageDataEvents2{
+		Groups: groups,
+		GroupsFound: tabGroupsChecked,
+		ValueSearch: valueSearch,
+		ThisGroup: thisGroup,
+		Relations: groupRelations,
+	}
+	fmt.Print("Events - ✅\n")
+	t.Execute(w, pageEvents)
+
 }

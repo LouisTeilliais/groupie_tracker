@@ -1,28 +1,19 @@
-body {
-    /* margin-left:15%; */
-    background-color: #f5f0e1;
-}
 
-#head p {
-    text-align: center;
-    font-size: 80px;
-    color: white;
-    
-}
-
-#head {
-    float: top;
-    height: 400px;
-    width: 100%;
-    background-size: cover;
-    background-image: url(/static/images/801x410_pnl_bercy_2_auto_x2.jpg);
-    margin-top: -5%;
+h1 {
+    text-align:center;
 }
 
 .options {
     width:25%;
     height:100%;
-    background-color:#ffc13b;
+    padding:10px;
+    color:#f5f0e1;
+    text-align: center;
+}
+
+form{
+    background-color:#1e3d59;
+
 }
 
 .pageArtistes {
@@ -30,6 +21,11 @@ body {
     display:flex;
     flex-direction:row;
     justify-content:space-around;
+}
+
+.years{
+margin-top:0;
+margin-bottom: 15px;
 }
 
 .groups{
@@ -45,10 +41,26 @@ body {
 }
 
 .oneGroup {
-    background-color: #ff6e40;
-    text-align: center;
+    width:auto;
+
 }
 
+.oneGroup p {
+    margin:2px;
+}
+.oneGroup h3 {
+    margin:5px;
+}
+
+input[type=range] {
+
+    cursor:-webkit-grabbing ;
+}
 datalist {
     display:flex;
+}
+
+button:hover{
+
+    color:#ff6e40;
 }

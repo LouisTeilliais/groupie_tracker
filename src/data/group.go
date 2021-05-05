@@ -19,8 +19,7 @@ type OneGroup struct {
 
 func GetOneGroup(thisID string)OneGroup {
 	url := "https://groupietrackers.herokuapp.com/api/artists/"+thisID
-	fmt.Print(url)
-	fmt.Print("Lancement Data GROUPS OK - ✅\n")
+	fmt.Print("Lancement Data ONE GROUP OK - ✅\n")
 	
 	spaceClient := http.Client{
 		Timeout: time.Second * 2, // Timeout after 2 seconds

@@ -150,8 +150,8 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 		endElem = startElem + (len(tabGroups)-startElem)
 	}
 	if page == 0 {
-		startElem = 1
-		endElem = 10
+		startElem = 0
+		endElem = 9
 	}
 	// Fin du calcul des index
 

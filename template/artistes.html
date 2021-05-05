@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/artistes.css">
     <link rel="icon" href="../static/images/favicon.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROUPIE TRACKER</title>
 </head>
 
 <header>
-    {{template "header"}}
+    <!-- {{template "header"}} -->
     
 </header>
 <body>
@@ -20,49 +22,63 @@
     </div>
     
     <div class="pageArtistes">
-        <div class="options">
-            
+    <div  class="options">
+        
+        <div>
             <form action="/artistes?page=1" id="formFilter" method="POST">
+                <hr>
+            
+                <h3>Sélectionnez les filtres : </h3>
+                <hr>
                 <div>
                     <div class="filter">
-                        <label class="filter-title" for="startCD">Filter by creation date</label>
+                        <label class="filter-title" for="startCD">Par date de création</label>
                         <div>
                             <input id="startCD" type="range" min="1958" max="2015" step="1" name="startCD" value={{.RangeCreationDate.Start}}>
                             <input id="endCD" type="range" min="1958" max="2015" step="1" name="endCD" value="{{.RangeCreationDate.End}}">
                         </div>
-                        <p>
+                        <p class="years">
                             De <span id="fromCD"></span> à <span id="toCD"></span>
                         </p>
                     </div>
+                    <hr>
                     
                     <div class="filter">
-                        <label for="startCD">Filtre par date de sortie du premier album </label>
+                        <label for="startCD">Par date de sortie du premier album </label>
                         <div>
                             <input id="startFA" type="range" min="1963" max="2018" step="1" name="startFA" value={{.RangeFirstAlbum.Start}}>
                             <input id="endFA" type="range" min="1963" max="2018" step="1" name="endFA" value="{{.RangeFirstAlbum.End}}">
-                            <p>
+                            <p class="years">
                                 De <span id="fromFA"></span> à <span id="toFA"></span>
                             </p>
                         </div>
-                        
+                        <hr>
                     </div>
-                    
-                    <label>Nombre de membres :</label>
-                    {{range .CheckboxMember}}
-                    <input {{.Checked}} name="checkbox-{{.Number}}" class="checkbox" type="checkbox" value="{{.Number}}">
-                    <label for="{{.Number}}">{{.Number}}</label>
-                    {{end}}
+                        <label>Nombre de membres :</label>
+                        <div class="box">
+                        {{range .CheckboxMember}}
+                        <input {{.Checked}} name="checkbox-{{.Number}}" class="checkbox" type="checkbox" value="{{.Number}}">
+                        <span class="check"></span>
+                        <label for="{{.Number}}">{{.Number}}</label>
+                        {{end}}
+                        </div>
+                        <hr>
+                   
+
                 </div>
-                <button type="submit">Filtres</button>
+
             </form>
+            
         </div>
-        
-        
         <div class="pagination">
             {{ range .NumberPages}}
             <button onclick="goToPage('{{.}}')" name="page" value="{{.}}">{{.}}</button>
             {{end}}
         </div>
+
+        </div>
+        
+ 
         
         
         <div class="groups">
@@ -82,6 +98,7 @@
                 <p>{{ .CreationDate}}</p>
                 <h3>Date du premier album</h3>
                 <p>{{ .FirstAlbum}}</p>
+                <a href="/events?oneGroup={{.ID}}"><button>Voir les concerts.</button></a>
             </div>
             {{end}}
             {{else}}
