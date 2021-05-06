@@ -15,7 +15,7 @@ func Locations(w http.ResponseWriter, req *http.Request){
 	
 	const path = "./template/locations.html"
 
-	t, e := template.ParseFiles(path, "./template/layout/header.html", "./template/layout/footer.html")
+	t, e := template.ParseFiles(path, "./template/layout/header.html")
 	
 	if req.Method == "POST" {
 		

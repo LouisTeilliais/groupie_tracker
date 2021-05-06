@@ -58,8 +58,6 @@ func Artistes(w http.ResponseWriter, req *http.Request){
 	var tabGroups []data.Group
 
 	if req.Method == "POST" {
-
-		fmt.Printf("Récupération form POST Artistes ✅\n")
 		creationDate = RangeDate{req.FormValue("startCD"), req.FormValue("endCD")}
 		firstAlbum = RangeDate{req.FormValue("startFA"), req.FormValue("endFA")}
 
